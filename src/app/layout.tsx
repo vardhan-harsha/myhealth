@@ -9,9 +9,9 @@ import { UserProvider } from "@/contexts/user-context";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
-  title: "Solo",
-  description: "Advanced AI tools for solo founders",
-  icons: [{ rel: "icon", url: "/favicon.png" }],
+  title: "Helix",
+  description: "Advanced AI for your health journey",
+  icons: [{ rel: "icon", url: "/helix_light.svg" }],
 };
 
 const plusJakartaSans = Plus_Jakarta_Sans({
