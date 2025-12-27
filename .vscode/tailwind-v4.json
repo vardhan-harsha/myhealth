@@ -1,0 +1,21 @@
+{
+    "version": 1.1,
+    "atDirectives": [
+        {
+            "name": "@theme",
+            "description": "Define design tokens in Tailwind CSS v4"
+        },
+        {
+            "name": "@custom-variant",
+            "description": "Define custom variants in Tailwind CSS v4"
+        },
+        {
+            "name": "@custom-selector",
+            "description": "Define custom selectors in Tailwind CSS v4"
+        },
+        {
+            "name": "@custom-utility",
+            "description": "Define custom utilities in Tailwind CSS v4"
+        }
+    ]
+}
