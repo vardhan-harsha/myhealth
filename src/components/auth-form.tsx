@@ -16,14 +16,14 @@ import { authClient } from "@/server/better-auth/client";
 
 export function AuthForm({
     className,
+    view = "login",
     ...props
-}: React.ComponentProps<"div">) {
-    const [authMode, setAuthMode] = useState<"login" | "signup" | "forgot-password">("login");
+}: React.ComponentProps<"div"> & { view?: "login" | "signup" | "forgot-password" }) {
     const [isLoading, setIsLoading] = useState(false);
 
-    const isLogin = authMode === "login";
-    const isSignup = authMode === "signup";
-    const isForgotPassword = authMode === "forgot-password";
+    // Derived state from props instead of internal state
+    const isLogin = view === "login";
+    const isForgotPassword = view === "forgot-password";
 
     const handleEmailAuth = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -49,7 +49,6 @@ export function AuthForm({
                     toast.success("Check your email", {
                         description: "If an account exists with that email, we've sent a reset link.",
                     });
-                    setAuthMode("login");
                 }
                 setIsLoading(false);
                 return;
@@ -83,9 +82,9 @@ export function AuthForm({
                 description: isLogin ? "You've successfully signed in." : "Welcome to SoloFounder!",
             });
 
-            // Small delay to show the toast before reload
+            // Small delay to show the toast before reload/redirect
             setTimeout(() => {
-                window.location.reload();
+                window.location.href = "/";
             }, 500);
         } catch (err: any) {
             console.error("Auth error:", err);
@@ -164,13 +163,12 @@ export function AuthForm({
                             <div className="flex items-center">
                                 <FieldLabel htmlFor="password">Password</FieldLabel>
                                 {isLogin && (
-                                    <button
-                                        type="button"
-                                        onClick={() => setAuthMode("forgot-password")}
+                                    <a
+                                        href="/forgot-password"
                                         className="ml-auto text-sm underline-offset-4 hover:underline"
                                     >
                                         Forgot password?
-                                    </button>
+                                    </a>
                                 )}
                             </div>
                             <Input
@@ -255,34 +253,31 @@ export function AuthForm({
 
                     <FieldDescription className="text-center">
                         {isForgotPassword ? (
-                            <button
-                                type="button"
-                                onClick={() => setAuthMode("login")}
+                            <a
+                                href="/login"
                                 className="underline underline-offset-4 hover:text-primary"
                             >
                                 Back to sign in
-                            </button>
+                            </a>
                         ) : isLogin ? (
                             <>
                                 Don&apos;t have an account?{" "}
-                                <button
-                                    type="button"
-                                    onClick={() => setAuthMode("signup")}
+                                <a
+                                    href="/signup"
                                     className="underline underline-offset-4 hover:text-primary"
                                 >
                                     Sign up
-                                </button>
+                                </a>
                             </>
                         ) : (
                             <>
                                 Already have an account?{" "}
-                                <button
-                                    type="button"
-                                    onClick={() => setAuthMode("login")}
+                                <a
+                                    href="/login"
                                     className="underline underline-offset-4 hover:text-primary"
                                 >
                                     Sign in
-                                </button>
+                                </a>
                             </>
                         )}
                     </FieldDescription>

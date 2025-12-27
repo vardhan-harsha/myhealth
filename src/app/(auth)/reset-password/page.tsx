@@ -24,7 +24,7 @@ function ResetPasswordForm() {
             <div className="flex flex-col items-center gap-4 text-center">
                 <h1 className="text-2xl font-bold text-destructive">Invalid Link</h1>
                 <p className="text-muted-foreground">The password reset link is invalid or has expired.</p>
-                <Button onClick={() => router.push("/")}>Back to Login</Button>
+                <Button onClick={() => router.push("/login")}>Back to Login</Button>
             </div>
         );
     }
@@ -57,7 +57,7 @@ function ResetPasswordForm() {
                 toast.success("Password reset successful", {
                     description: "You can now sign in with your new password.",
                 });
-                router.push("/");
+                router.push("/login");
             }
         } catch (err: any) {
             toast.error("Error", {
@@ -112,16 +112,8 @@ function ResetPasswordForm() {
 
 export default function ResetPasswordPage() {
     return (
-        <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
-            <div className="w-full max-w-sm md:max-w-3xl">
-                <div className="flex flex-col gap-6">
-                    <div className="flex flex-col gap-6 rounded-xl border bg-card p-6 shadow md:p-10">
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <ResetPasswordForm />
-                        </Suspense>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+            <ResetPasswordForm />
+        </Suspense>
     );
 }
