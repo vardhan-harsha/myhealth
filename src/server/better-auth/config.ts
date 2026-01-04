@@ -23,7 +23,7 @@ export const auth = betterAuth({
         const result = await resend.emails.send({
           from: env.EMAIL_FROM,
           to: user.email,
-          subject: "Reset your password - SoloFounder",
+          subject: "Reset your password - Helix",
           html: `Click the link below to reset your password: <a href="${url}">${url}</a>`,
         });
 

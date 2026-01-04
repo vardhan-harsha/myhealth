@@ -2,10 +2,8 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
-  Command,
   Frame,
   GalleryVerticalEnd,
   Map,
@@ -30,9 +28,9 @@ import {
 const data = {
   teams: [
     {
-      name: "SoloFounder",
+      name: "Helix",
       logo: GalleryVerticalEnd,
-      plan: "Free",
+      plan: "Enterprise",
     },
   ],
   navMain: [

@@ -1,5 +1,3 @@
-import { GalleryVerticalEnd } from "lucide-react";
-
 export default function AuthLayout({
     children,
 }: {
@@ -9,11 +7,13 @@ export default function AuthLayout({
         <div className="grid min-h-svh lg:grid-cols-2">
             <div className="flex flex-col gap-4 p-6 md:p-10">
                 <div className="flex justify-center gap-2 md:justify-start">
-                    <a href="/" className="flex items-center gap-2 font-medium">
-                        <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-                            <GalleryVerticalEnd className="size-4" />
+                    <a href="/" className="flex items-center gap-3 font-semibold text-2xl">
+                        <div className="flex size-12 items-center justify-center">
+                            <img src="/helix_dark.svg" alt="Helix" className="size-10 dark:hidden" />
+                            <img src="/helix_light.svg" alt="Helix" className="size-10 hidden dark:block" />
                         </div>
-                        SoloFounder
+
+                        <span className="hidden md:block">Helix</span>
                     </a>
                 </div>
                 <div className="flex flex-1 items-center justify-center">
@@ -26,11 +26,10 @@ export default function AuthLayout({
                 <div className="absolute inset-0 flex items-center justify-center p-8">
                     <div className="max-w-md space-y-4 text-center">
                         <h2 className="text-3xl font-bold tracking-tight">
-                            Start building your dream
+                            Transform Your Health Journey
                         </h2>
                         <p className="text-muted-foreground text-lg">
-                            Join thousands of solo founders who are building amazing products.
-                            Sign in to get started.
+                            Track your vitals, monitor your progress, and unlock insights that empower you to make better health decisions every day.
                         </p>
                     </div>
                 </div>

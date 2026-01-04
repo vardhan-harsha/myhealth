@@ -79,7 +79,7 @@ export function AuthForm({
 
             // Success case
             toast.success(isLogin ? "Welcome back!" : "Account created!", {
-                description: isLogin ? "You've successfully signed in." : "Welcome to SoloFounder!",
+                description: isLogin ? "You've successfully signed in." : "Welcome to Helix!",
             });
 
             // Small delay to show the toast before reload/redirect
