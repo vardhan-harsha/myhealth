@@ -7,9 +7,27 @@ import { Resend } from "resend";
 
 const resend = new Resend(env.RESEND_API_KEY);
 
+// Determine the base URL based on environment
+const getBaseURL = () => {
+  // 1. Use BETTER_AUTH_URL if explicitly set
+  if (process.env.BETTER_AUTH_URL) {
+    return process.env.BETTER_AUTH_URL;
+  }
+
+  // 2. Use VERCEL_URL in production/preview (Vercel automatically sets this)
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+  // 3. Fallback to localhost for development
+  return "http://localhost:3000";
+};
+
+const baseURL = getBaseURL();
+
 export const auth = betterAuth({
-  baseURL: "http://localhost:3000",
-  trustedOrigins: ["http://localhost:3000"],
+  baseURL,
+  trustedOrigins: [baseURL],
   database: drizzleAdapter(db, {
     provider: "pg",
   }),
@@ -50,17 +68,17 @@ export const auth = betterAuth({
     github: {
       clientId: env.BETTER_AUTH_GITHUB_CLIENT_ID,
       clientSecret: env.BETTER_AUTH_GITHUB_CLIENT_SECRET,
-      redirectURI: "http://localhost:3000/api/auth/callback/github",
+      redirectURI: `${baseURL}/api/auth/callback/github`,
     },
     google: {
       clientId: env.BETTER_AUTH_GOOGLE_CLIENT_ID,
       clientSecret: env.BETTER_AUTH_GOOGLE_CLIENT_SECRET,
-      redirectURI: "http://localhost:3000/api/auth/callback/google",
+      redirectURI: `${baseURL}/api/auth/callback/google`,
     },
     microsoft: {
       clientId: env.BETTER_AUTH_MICROSOFT_CLIENT_ID,
       clientSecret: env.BETTER_AUTH_MICROSOFT_CLIENT_SECRET,
-      redirectURI: "http://localhost:3000/api/auth/callback/microsoft",
+      redirectURI: `${baseURL}/api/auth/callback/microsoft`,
     },
   }
 });
