@@ -6,6 +6,7 @@ import {
   HeartPulse,
   LayoutDashboard,
   MessageSquare,
+  Settings2,
   Users,
 } from "lucide-react"
 
@@ -28,7 +29,6 @@ const data = {
       title: "Dashboard",
       url: "/dashboard",
       icon: LayoutDashboard,
-      isActive: true,
     },
     {
       title: "My Wellbeing",
@@ -44,6 +44,29 @@ const data = {
       title: "Community",
       url: "/dashboard/community",
       icon: Users,
+    },
+    {
+      title: "Settings",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "General",
+          url: "/dashboard/settings/general",
+        },
+        {
+          title: "Team",
+          url: "/dashboard/settings/team",
+        },
+        {
+          title: "Billing",
+          url: "/dashboard/settings/billing",
+        },
+        {
+          title: "Limits",
+          url: "/dashboard/settings/limits",
+        },
+      ],
     },
   ],
   recentChats: [
