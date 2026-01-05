@@ -48,7 +48,7 @@ export function NavUser({
       await authClient.signOut();
       toast.success("Signed out successfully");
       window.location.href = "/";
-    } catch (error) {
+    } catch {
       toast.error("Failed to sign out", {
         description: "Please try again.",
       });

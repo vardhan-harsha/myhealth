@@ -43,7 +43,7 @@ export function AuthForm({
 
                 if (error) {
                     toast.error("Error", {
-                        description: error.message || "Something went wrong. Please try again.",
+                        description: error.message ?? "Something went wrong. Please try again.",
                     });
                 } else {
                     toast.success("Check your email", {
@@ -71,7 +71,7 @@ export function AuthForm({
             // Check if the result indicates an error
             if (result?.error) {
                 toast.error(isLogin ? "Sign in failed" : "Sign up failed", {
-                    description: result.error.message || "Please check your credentials and try again.",
+                    description: result.error.message ?? "Please check your credentials and try again.",
                 });
                 setIsLoading(false);
                 return;
@@ -86,11 +86,15 @@ export function AuthForm({
             setTimeout(() => {
                 window.location.href = "/";
             }, 500);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error("Auth error:", err);
 
             // Better Auth errors might be in err.error or err.message
-            const errorMessage = err?.error?.message || err?.message || "Please check your credentials and try again.";
+            let errorMessage = "Please check your credentials and try again.";
+            if (err && typeof err === "object") {
+                const error = err as { error?: { message?: string }; message?: string };
+                errorMessage = error?.error?.message ?? error?.message ?? errorMessage;
+            }
 
             toast.error(isLogin ? "Sign in failed" : "Sign up failed", {
                 description: errorMessage,

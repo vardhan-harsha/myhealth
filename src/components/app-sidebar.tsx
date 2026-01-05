@@ -15,7 +15,6 @@ import {
 import { NavMain } from "@/components/nav-main"
 import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
   SidebarContent,
@@ -161,7 +160,7 @@ export function AppSidebar({
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={user || { name: "User", email: "user@example.com" }} />
+        <NavUser user={user ?? { name: "User", email: "user@example.com" }} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

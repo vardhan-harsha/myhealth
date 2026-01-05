@@ -51,7 +51,7 @@ function ResetPasswordForm() {
 
             if (error) {
                 toast.error("Error", {
-                    description: error.message || "Failed to reset password. Please try again.",
+                    description: error.message ?? "Failed to reset password. Please try again.",
                 });
             } else {
                 toast.success("Password reset successful", {
@@ -59,9 +59,10 @@ function ResetPasswordForm() {
                 });
                 router.push("/login");
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
+            const errorMessage = err instanceof Error ? err.message : "Something went wrong.";
             toast.error("Error", {
-                description: err.message || "Something went wrong.",
+                description: errorMessage,
             });
         } finally {
             setIsLoading(false);
