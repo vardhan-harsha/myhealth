@@ -3,6 +3,7 @@ import "@/styles/globals.css";
 import { type Metadata } from "next";
 import { Plus_Jakarta_Sans, Lora, IBM_Plex_Mono } from "next/font/google";
 import { Toaster } from "sonner";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { UserProvider } from "@/contexts/user-context";
@@ -61,6 +62,7 @@ export default function RootLayout({
           </TRPCReactProvider>
           <Toaster richColors position="top-right" />
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
