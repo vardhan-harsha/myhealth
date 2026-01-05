@@ -79,13 +79,13 @@ export function HealthActivityWidget({
     if (!mounted) {
         // Return a skeleton/placeholder during SSR
         return (
-            <div className={className}>
-                <div className="rounded-lg border bg-card">
+            <div className={`w-full ${className}`}>
+                <div className="rounded-lg border bg-card w-full">
                     <div className="p-6 pb-4">
                         <h3 className="text-lg font-semibold">{title}</h3>
                         <p className="text-sm text-muted-foreground mt-1">{description}</p>
                     </div>
-                    <div className="px-6 pb-6">
+                    <div className="px-6 pb-6 w-full overflow-hidden">
                         <div className="h-40 flex items-center justify-center text-muted-foreground">
                             Loading activity data...
                         </div>
@@ -96,25 +96,29 @@ export function HealthActivityWidget({
     }
 
     return (
-        <div className={className}>
-            <div className="rounded-lg border bg-card">
+        <div className={`w-full ${className}`}>
+            <div className="rounded-lg border bg-card w-full">
                 <div className="p-6 pb-4">
                     <h3 className="text-lg font-semibold">{title}</h3>
                     <p className="text-sm text-muted-foreground mt-1">{description}</p>
                 </div>
-                <div className="px-6 pb-6">
-                    <ActivityCalendar
-                        data={sampleData}
-                        theme={customTheme}
-                        colorScheme={theme === "dark" ? "dark" : "light"}
-                        blockSize={12}
-                        blockMargin={4}
-                        fontSize={14}
-                        showWeekdayLabels
-                        labels={{
-                            totalCount: "{{count}} activities in the last year",
-                        }}
-                    />
+                {/* Use overflow-x-auto to allow scrolling on small screens */}
+                <div className="px-6 pb-6 w-full overflow-x-auto">
+                    {/* min-w-fit ensures the calendar takes its natural size and triggers scroll if container is smaller */}
+                    <div className="min-w-fit flex justify-center md:justify-start">
+                        <ActivityCalendar
+                            data={sampleData}
+                            theme={customTheme}
+                            colorScheme={theme === "dark" ? "dark" : "light"}
+                            blockSize={12}
+                            blockMargin={4}
+                            fontSize={14}
+                            showWeekdayLabels
+                            labels={{
+                                totalCount: "{{count}} activities in the last year",
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

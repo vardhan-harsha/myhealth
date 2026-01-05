@@ -2,14 +2,11 @@
 
 import * as React from "react"
 import {
-  BookOpen,
   Bot,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
+  HeartPulse,
+  LayoutDashboard,
+  MessageSquare,
+  Users,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -24,119 +21,48 @@ import {
 } from "@/components/ui/sidebar"
 import { AppLogo } from "./app-logo"
 
-// This is sample data.
+// Menu items.
 const data = {
-  teams: [
-    {
-      name: "Helix",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-  ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboard,
       isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
     },
     {
-      title: "Models",
-      url: "#",
+      title: "My Wellbeing",
+      url: "/dashboard/wellbeing",
+      icon: HeartPulse,
+    },
+    {
+      title: "Ask Helix",
+      url: "/dashboard/advisory",
       icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
     },
     {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
+      title: "Community",
+      url: "/dashboard/community",
+      icon: Users,
     },
   ],
-  projects: [
+  recentChats: [
     {
-      name: "Design Engineering",
+      name: "Morning Check-in",
       url: "#",
-      icon: Frame,
+      icon: MessageSquare,
     },
     {
-      name: "Sales & Marketing",
+      name: "Workout Advice",
       url: "#",
-      icon: PieChart,
+      icon: MessageSquare,
     },
     {
-      name: "Travel",
+      name: "Sleep Analysis",
       url: "#",
-      icon: Map,
+      icon: MessageSquare,
     },
-  ],
+  ]
 }
 
 export function AppSidebar({
@@ -152,12 +78,11 @@ export function AppSidebar({
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        {/* <TeamSwitcher teams={data.teams} /> */}
         <AppLogo />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavProjects projects={data.recentChats} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={user ?? { name: "User", email: "user@example.com" }} />
