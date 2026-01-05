@@ -15,6 +15,7 @@ import {
 import { useUser } from "@/contexts/user-context"
 import { Skeleton } from "@/components/ui/skeleton"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { HealthActivityWidget } from "@/components/activity-heatmap"
 
 export default function Page() {
   const { user, isLoading } = useUser();
@@ -57,7 +58,7 @@ export default function Page() {
           ) : (
             <div>
               <h2 className="text-2xl font-bold">
-                Welcome back, {user?.name || user?.email || "User"}!
+                Welcome back, {user?.name ?? user?.email ?? "User"}!
               </h2>
               <p className="text-muted-foreground mt-1">
                 Here&apos;s what&apos;s happening with your projects today.
@@ -88,9 +89,7 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min flex items-center justify-center">
-          <p className="text-muted-foreground">Main content area - Add your dashboard widgets here</p>
-        </div>
+        <HealthActivityWidget className="w-full" />
       </div>
     </>
   )
