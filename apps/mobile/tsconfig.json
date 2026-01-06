@@ -1,4 +1,26 @@
 {
-  "compilerOptions": {},
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@myhealth/api": [
+        "../../packages/api/src/index.ts"
+      ],
+      "@myhealth/api/*": [
+        "../../packages/api/src/*"
+      ],
+      "@myhealth/auth": [
+        "../../packages/auth/src/index.ts"
+      ],
+      "@myhealth/auth/*": [
+        "../../packages/auth/src/*"
+      ],
+      "@myhealth/db": [
+        "../../packages/db/src/index.ts"
+      ],
+      "@myhealth/db/*": [
+        "../../packages/db/src/*"
+      ]
+    }
+  }
 }

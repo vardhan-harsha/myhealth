@@ -1,4 +1,4 @@
-import { getSession } from "@/server/better-auth/server";
+import { getSession } from "@myhealth/auth/server";
 import { redirect } from "next/navigation";
 
 export default async function Home() {

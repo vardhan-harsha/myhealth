@@ -5,6 +5,8 @@
 import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+    transpilePackages: ["@myhealth/api", "@myhealth/auth", "@myhealth/db"],
+};
 
 export default config;

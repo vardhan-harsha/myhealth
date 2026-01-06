@@ -29,7 +29,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { authClient } from "@/server/better-auth/client";
+import { authClient } from "@myhealth/auth/client";
 import { toast } from "sonner";
 
 export function NavUser({

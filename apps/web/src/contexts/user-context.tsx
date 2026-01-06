@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, type ReactNode } from "react";
-import { useSession } from "@/server/better-auth/client";
+import { useSession } from "@myhealth/auth/client";
 
 // Define the user type based on Better Auth session
 export type User = {

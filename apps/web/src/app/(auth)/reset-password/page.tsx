@@ -11,7 +11,7 @@ import {
     FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { authClient } from "@/server/better-auth/client";
+import { authClient } from "@myhealth/auth/client";
 
 function ResetPasswordForm() {
     const router = useRouter();

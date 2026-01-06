@@ -1,0 +1,52 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "baseUrl": ".",
+        "paths": {
+            "@myhealth/api": [
+                "./packages/api/src/index.ts"
+            ],
+            "@myhealth/api/*": [
+                "./packages/api/src/*"
+            ],
+            "@myhealth/auth": [
+                "./packages/auth/src/index.ts"
+            ],
+            "@myhealth/auth/*": [
+                "./packages/auth/src/*"
+            ],
+            "@myhealth/db": [
+                "./packages/db/src/index.ts"
+            ],
+            "@myhealth/db/*": [
+                "./packages/db/src/*"
+            ]
+        }
+    },
+    "include": [
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.js",
+        "**/*.jsx"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

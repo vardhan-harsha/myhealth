@@ -4,8 +4,8 @@ import {
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
-} from "@/server/api/trpc";
-import { posts } from "@/server/db/schema";
+} from "../trpc";
+import { posts } from "@myhealth/db";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure
@@ -26,6 +26,7 @@ export const postRouter = createTRPCRouter({
     }),
 
   getLatest: protectedProcedure.query(async ({ ctx }) => {
+    // Reading file concurrently to confirm content.
     const post = await ctx.db.query.posts.findFirst({
       orderBy: (posts, { desc }) => [desc(posts.createdAt)],
     });

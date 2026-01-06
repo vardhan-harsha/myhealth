@@ -1,5 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { getSession } from "@/server/better-auth/server";
+import { getSession } from "@myhealth/auth/server";
 import {
     SidebarInset,
     SidebarProvider,

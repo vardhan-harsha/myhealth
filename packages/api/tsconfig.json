@@ -1,0 +1,28 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "./dist",
+        "paths": {
+            "@myhealth/api": [
+                "./src/index.ts"
+            ],
+            "@myhealth/api/*": [
+                "./src/*"
+            ],
+            "@myhealth/auth": [
+                "../auth/src/index.ts"
+            ],
+            "@myhealth/db": [
+                "../db/src/index.ts"
+            ]
+        }
+    },
+    "include": [
+        "."
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}
