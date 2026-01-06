@@ -30,7 +30,7 @@ export function DynamicBreadcrumb() {
                 {segments.map((segment, index) => {
                     const isLast = index === segments.length - 1
                     const href = `/${segments.slice(0, index + 1).join("/")}`
-                    const name = ROUTE_NAME_MAP[segment] || segment.charAt(0).toUpperCase() + segment.slice(1)
+                    const name = ROUTE_NAME_MAP[segment] ?? segment.charAt(0).toUpperCase() + segment.slice(1)
 
                     return (
                         <React.Fragment key={href}>

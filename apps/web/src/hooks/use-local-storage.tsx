@@ -115,10 +115,12 @@ export function useLocalStorage<T>(
     };
 
     window.addEventListener("storage", handleStorageChange);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     window.addEventListener("local-storage" as any, handleStorageChange);
 
     return () => {
       window.removeEventListener("storage", handleStorageChange);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       window.removeEventListener("local-storage" as any, handleStorageChange);
     };
   }, [key, readValue]);

@@ -5,14 +5,23 @@
             "dependsOn": [
                 "^build"
             ],
+            "inputs": [
+                "$TURBO_DEFAULT$",
+                ".env",
+                "!README.md"
+            ],
             "outputs": [
                 ".next/**",
-                "!.next/cache/**"
+                "!.next/cache/**",
+                "dist/**"
             ]
         },
         "lint": {
             "dependsOn": [
                 "^lint"
+            ],
+            "inputs": [
+                "$TURBO_DEFAULT$"
             ]
         },
         "dev": {
