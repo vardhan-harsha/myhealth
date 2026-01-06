@@ -4,7 +4,7 @@ import { createHydrationHelpers } from "@trpc/react-query/rsc";
 import { headers } from "next/headers";
 import { cache } from "react";
 
-import { createCaller, type AppRouter, createTRPCContext } from "@myhealth/api";
+import { createCaller, type AppRouter, createTRPCContext } from "@helix/api";
 import { createQueryClient } from "./query-client";
 
 /**

@@ -1,18 +1,27 @@
 {
-  "name": "@myhealth/mobile",
+  "name": "@helix/mobile",
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
     "start": "expo start",
-    "dev": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "dev": "APP_ENV=development expo start",
+    "clear": "rm -rf .expo node_modules/.cache",
+    "dev:preview": "APP_ENV=preview expo start",
+    "dev:production": "APP_ENV=production expo start",
+    "android": "APP_ENV=development expo start --android",
+    "android:preview": "APP_ENV=preview expo start --android",
+    "android:production": "APP_ENV=production expo start --android",
+    "ios": "APP_ENV=development expo start --ios",
+    "ios:preview": "APP_ENV=preview expo start --ios",
+    "ios:production": "APP_ENV=production expo start --ios",
+    "web": "APP_ENV=development expo start --web",
+    "build:preview": "APP_ENV=preview eas build --profile preview",
+    "build:production": "APP_ENV=production eas build --profile production"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
     "@expo/metro-runtime": "~6.1.2",
-    "@myhealth/api": "workspace:*",
+    "@helix/api": "workspace:*",
     "@tanstack/react-query": "^5.69.0",
     "@trpc/client": "^11.0.0-rc.446",
     "@trpc/react-query": "^11.0.0-rc.446",
@@ -30,6 +39,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~19.2.7",
+    "dotenv": "^17.2.3",
     "typescript": "^5.8.2"
   }
 }

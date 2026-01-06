@@ -1,5 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
-import { getSession } from "@myhealth/auth/server";
+import { getSession } from "@helix/auth/server";
 import {
     SidebarInset,
     SidebarProvider,

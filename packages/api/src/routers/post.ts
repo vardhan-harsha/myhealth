@@ -5,7 +5,7 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "../trpc";
-import { posts } from "@myhealth/db";
+import { posts } from "@helix/db";
 
 export const postRouter = createTRPCRouter({
   hello: publicProcedure

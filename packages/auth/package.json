@@ -1,5 +1,5 @@
 {
-    "name": "@myhealth/auth",
+    "name": "@helix/auth",
     "version": "0.1.0",
     "main": "./src/index.ts",
     "types": "./src/index.ts",
@@ -10,7 +10,7 @@
         "format": "prettier --check \"**/*.{mjs,ts,md,json}\""
     },
     "dependencies": {
-        "@myhealth/db": "workspace:*",
+        "@helix/db": "workspace:*",
         "@t3-oss/env-core": "^0.11.1",
         "better-auth": "^1.1.16",
         "drizzle-orm": "^0.41.0",

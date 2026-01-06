@@ -6,7 +6,7 @@ import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
 const config = {
-    transpilePackages: ["@myhealth/api", "@myhealth/auth", "@myhealth/db"],
+    transpilePackages: ["@helix/api", "@helix/auth", "@helix/db"],
 };
 
 export default config;

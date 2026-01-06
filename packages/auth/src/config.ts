@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 import { env } from "./env";
-import { db } from "@myhealth/db";
+import { db } from "@helix/db";
 import { Resend } from "resend";
 
 const resend = new Resend(env.RESEND_API_KEY);

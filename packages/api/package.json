@@ -1,5 +1,5 @@
 {
-    "name": "@myhealth/api",
+    "name": "@helix/api",
     "version": "0.1.0",
     "main": "./src/index.ts",
     "types": "./src/index.ts",
@@ -10,8 +10,8 @@
         "format": "prettier --check \"**/*.{mjs,ts,md,json}\""
     },
     "dependencies": {
-        "@myhealth/auth": "workspace:*",
-        "@myhealth/db": "workspace:*",
+        "@helix/auth": "workspace:*",
+        "@helix/db": "workspace:*",
         "@trpc/server": "^11.0.0-rc.446",
         "superjson": "^2.2.1",
         "zod": "^3.24.2"

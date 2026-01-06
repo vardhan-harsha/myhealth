@@ -4,10 +4,10 @@
         "baseUrl": ".",
         "outDir": "./dist",
         "paths": {
-            "@myhealth/db": [
+            "@helix/db": [
                 "./src/index.ts"
             ],
-            "@myhealth/db/*": [
+            "@helix/db/*": [
                 "./src/*"
             ]
         }

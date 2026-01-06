@@ -1,5 +1,5 @@
 {
-  "name": "@myhealth/web",
+  "name": "@helix/web",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -29,9 +29,9 @@
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.2",
-    "@myhealth/api": "workspace:*",
-    "@myhealth/auth": "workspace:*",
-    "@myhealth/db": "workspace:*",
+    "@helix/api": "workspace:*",
+    "@helix/auth": "workspace:*",
+    "@helix/db": "workspace:*",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-dialog": "^1.1.15",

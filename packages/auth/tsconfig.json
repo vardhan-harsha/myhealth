@@ -4,13 +4,13 @@
         "baseUrl": ".",
         "outDir": "./dist",
         "paths": {
-            "@myhealth/auth": [
+            "@helix/auth": [
                 "./src/index.ts"
             ],
-            "@myhealth/auth/*": [
+            "@helix/auth/*": [
                 "./src/*"
             ],
-            "@myhealth/db": [
+            "@helix/db": [
                 "../db/src/index.ts"
             ]
         }

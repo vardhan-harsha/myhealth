@@ -8,8 +8,8 @@ import { trpc } from './utils/api';
 import superjson from 'superjson';
 import Constants from 'expo-constants';
 
-// Get the host IP for connecting to the server
-const localhost = Constants.expoConfig?.hostUri?.split(":")[0] ?? "localhost";
+// Get API URL from environment configuration
+const apiUrl = Constants.expoConfig?.extra?.apiUrl || 'http://localhost:3000';
 
 export default function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -17,7 +17,7 @@ export default function App() {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: `http://${localhost}:3000/api/trpc`,
+          url: `${apiUrl}/api/trpc`,
           transformer: superjson,
         }),
       ],

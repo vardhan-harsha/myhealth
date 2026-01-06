@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { db } from "@myhealth/db";
+import { db } from "@helix/db";
 import { Button } from "@/components/ui/button";
 import {
     Field,
@@ -13,7 +13,7 @@ import {
     FieldSeparator,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { authClient } from "@myhealth/auth/client";
+import { authClient } from "@helix/auth/client";
 
 export function AuthForm({
     className,
