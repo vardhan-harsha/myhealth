@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { UserProvider } from "@/contexts/user-context";
+import { BreadcrumbProvider } from "@/contexts/breadcrumb-context";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
@@ -58,7 +59,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TRPCReactProvider>
-            <UserProvider>{children}</UserProvider>
+            <UserProvider>
+              <BreadcrumbProvider>{children}</BreadcrumbProvider>
+            </UserProvider>
           </TRPCReactProvider>
           <Toaster richColors position="top-right" />
         </ThemeProvider>
