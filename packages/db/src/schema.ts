@@ -59,6 +59,8 @@ export const userProfile = pgTable("user_profile", {
   trainingPreferences: jsonb("training_preferences"),
   nutritionPreferences: jsonb("nutrition_preferences"),
   aiCoach: text("ai_coach"),
+  gender: text("gender"),
+  units: text("units"),
   createdAt: timestamp("created_at")
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),

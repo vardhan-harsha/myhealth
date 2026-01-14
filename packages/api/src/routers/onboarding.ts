@@ -17,46 +17,52 @@ export const onboardingRouter = createTRPCRouter({
     saveStep: protectedProcedure
         .input(
             z.object({
-                step: z.number().min(1).max(6).optional(), // Track current step number if needed
+                step: z.number().min(1).max(6).optional(),
                 goals: z.record(z.any()).optional(),
                 metrics: z.record(z.any()).optional(),
                 trainingPreferences: z.record(z.any()).optional(),
                 nutritionPreferences: z.record(z.any()).optional(),
                 aiCoach: z.string().optional(),
+                name: z.string().optional(),
+                gender: z.string().optional(),
+                units: z.string().optional(),
             }),
         )
         .mutation(async ({ ctx, input }) => {
-            const { goals, metrics, trainingPreferences, nutritionPreferences, aiCoach } = input;
+            const { goals, metrics, trainingPreferences, nutritionPreferences, aiCoach, name, gender, units } = input;
             const userId = ctx.session.user.id;
+
+            // Update user name if provided
+            if (name) {
+                await ctx.db.update(user).set({ name }).where(eq(user.id, userId));
+            }
 
             // Check if profile exists
             const existingProfile = await ctx.db.query.userProfile.findFirst({
                 where: eq(userProfile.userId, userId),
             });
 
+            const profileData = {
+                goals: goals ? goals : undefined,
+                metrics: metrics ? metrics : undefined,
+                trainingPreferences: trainingPreferences ? trainingPreferences : undefined,
+                nutritionPreferences: nutritionPreferences ? nutritionPreferences : undefined,
+                aiCoach: aiCoach ? aiCoach : undefined,
+                gender: gender ? gender : undefined,
+                units: units ? units : undefined,
+                updatedAt: new Date(),
+            };
+
             if (existingProfile) {
-                // Update existing profile
                 await ctx.db
                     .update(userProfile)
-                    .set({
-                        goals: goals ? goals : undefined,
-                        metrics: metrics ? metrics : undefined,
-                        trainingPreferences: trainingPreferences ? trainingPreferences : undefined,
-                        nutritionPreferences: nutritionPreferences ? nutritionPreferences : undefined,
-                        aiCoach: aiCoach ? aiCoach : undefined,
-                        updatedAt: new Date(),
-                    })
+                    .set(profileData)
                     .where(eq(userProfile.id, existingProfile.id));
             } else {
-                // Create new profile
                 await ctx.db.insert(userProfile).values({
-                    id: crypto.randomUUID(), // Or let DB generate if default fn is set in schema
+                    id: crypto.randomUUID(),
                     userId,
-                    goals,
-                    metrics,
-                    trainingPreferences,
-                    nutritionPreferences,
-                    aiCoach,
+                    ...profileData,
                 });
             }
 
