@@ -3,8 +3,18 @@
     "private": true,
     "scripts": {
         "build": "turbo run build",
+        "build:web": "turbo run build --filter=@helix/web",
+        "build:mobile": "turbo run build --filter=@helix/mobile",
         "dev": "turbo run dev",
+        "dev:web": "turbo run dev --filter=@helix/web",
+        "dev:mobile": "turbo run dev --filter=@helix/mobile",
         "lint": "turbo run lint",
+        "lint:web": "turbo run lint --filter=@helix/web",
+        "lint:mobile": "turbo run lint --filter=@helix/mobile",
+        "db:generate": "turbo run db:generate",
+        "db:migrate": "turbo run db:migrate",
+        "db:push": "turbo run db:push",
+        "db:studio": "turbo run db:studio",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules"
     },

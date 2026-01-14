@@ -7,10 +7,10 @@ const appEnv = env.NEXT_PUBLIC_APP_ENV ?? "development";
 console.log(`[Drizzle] Connecting to ${appEnv} database`);
 
 export default {
-  schema: "./src/server/db/schema.ts",
+  schema: "../../packages/db/src/schema.ts",
   dialect: "postgresql",
   dbCredentials: {
     url: env.DATABASE_URL,
   },
-  tablesFilter: ["helix_*"],
+  // tablesFilter: ["helix_*"],
 } satisfies Config;

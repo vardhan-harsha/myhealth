@@ -2,6 +2,7 @@ import { relations } from "drizzle-orm";
 import {
   boolean,
   index,
+  jsonb,
   pgTable,
   pgTableCreator,
   text,
@@ -39,6 +40,25 @@ export const user = pgTable("user", {
     .$defaultFn(() => false)
     .notNull(),
   image: text("image"),
+  createdAt: timestamp("created_at")
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  updatedAt: timestamp("updated_at")
+    .$defaultFn(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  onboardingCompleted: boolean("onboarding_completed").default(false).notNull(),
+});
+
+export const userProfile = pgTable("user_profile", {
+  id: text("id").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  goals: jsonb("goals"),
+  metrics: jsonb("metrics"),
+  trainingPreferences: jsonb("training_preferences"),
+  nutritionPreferences: jsonb("nutrition_preferences"),
+  aiCoach: text("ai_coach"),
   createdAt: timestamp("created_at")
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
@@ -91,9 +111,14 @@ export const verification = pgTable("verification", {
   ),
 });
 
-export const userRelations = relations(user, ({ many }) => ({
+export const userRelations = relations(user, ({ many, one }) => ({
   account: many(account),
   session: many(session),
+  userProfile: one(userProfile),
+}));
+
+export const userProfileRelations = relations(userProfile, ({ one }) => ({
+  user: one(user, { fields: [userProfile.userId], references: [user.id] }),
 }));
 
 export const accountRelations = relations(account, ({ one }) => ({

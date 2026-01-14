@@ -10,6 +10,7 @@ export type User = {
     email: string;
     image?: string;
     emailVerified: boolean;
+    onboardingCompleted: boolean;
     createdAt: Date;
     updatedAt: Date;
 } | null;

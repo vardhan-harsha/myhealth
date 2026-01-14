@@ -9,6 +9,7 @@ import { TRPCReactProvider } from "@/trpc/react";
 import { UserProvider } from "@/contexts/user-context";
 import { BreadcrumbProvider } from "@/contexts/breadcrumb-context";
 import { ThemeProvider } from "@/components/theme-provider";
+import { OnboardingGuard } from "@/components/layout/onboarding-guard";
 
 export const metadata: Metadata = {
   title: "Helix",
@@ -60,7 +61,9 @@ export default function RootLayout({
         >
           <TRPCReactProvider>
             <UserProvider>
-              <BreadcrumbProvider>{children}</BreadcrumbProvider>
+              <BreadcrumbProvider>
+                <OnboardingGuard>{children}</OnboardingGuard>
+              </BreadcrumbProvider>
             </UserProvider>
           </TRPCReactProvider>
           <Toaster richColors position="top-right" />

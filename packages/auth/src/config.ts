@@ -64,6 +64,15 @@ export const auth = betterAuth({
       trustedProviders: ["github", "google", "microsoft"],
     },
   },
+  user: {
+    additionalFields: {
+      onboardingCompleted: {
+        type: "boolean",
+        required: false,
+        defaultValue: false,
+      },
+    },
+  },
   socialProviders: {
     github: {
       clientId: env.BETTER_AUTH_GITHUB_CLIENT_ID,
