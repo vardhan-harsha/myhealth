@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Sparkles, CheckCircle2 } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
 const COACHES = [
@@ -99,23 +99,23 @@ export function Step5Coach({ onNext, onBack, data }: { onNext: (data: any) => vo
                 })}
             </div>
 
-            <div className="flex justify-between items-center max-w-2xl mx-auto px-4">
-                <Button variant="ghost" onClick={onBack} className="text-lg">
-                    ← Back
+            <div className="flex items-center gap-4 mt-8">
+                <Button
+                    variant="ghost"
+                    onClick={onBack}
+                    className="h-12 px-6 rounded-full text-base"
+                >
+                    Back
                 </Button>
                 <Button
-                    className="px-10 py-6 text-lg rounded-full bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1"
+                    className="h-12 px-8 rounded-full shadow-lg shadow-primary/20 text-base font-bold"
                     size="lg"
                     onClick={handleSubmit}
                     disabled={!selectedCoach}
                 >
-                    Review Plan <Sparkles className="ml-2 h-5 w-5" />
+                    Continue
                 </Button>
             </div>
-
-            <p className="text-center text-xs text-muted-foreground mt-8 opacity-50">
-                Step 5 of 6
-            </p>
         </motion.div>
     );
 }
