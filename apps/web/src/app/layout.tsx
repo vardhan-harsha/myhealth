@@ -4,6 +4,7 @@ import { type Metadata } from "next";
 import { Plus_Jakarta_Sans, Lora, IBM_Plex_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 import { TRPCReactProvider } from "@/trpc/react";
 import { UserProvider } from "@/contexts/user-context";
@@ -69,6 +70,7 @@ export default function RootLayout({
           <Toaster richColors position="top-right" />
         </ThemeProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
