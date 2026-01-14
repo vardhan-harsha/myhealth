@@ -1,0 +1,22 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "./dist",
+        "paths": {
+            "@helix/db": [
+                "./src/index.ts"
+            ],
+            "@helix/db/*": [
+                "./src/*"
+            ]
+        }
+    },
+    "include": [
+        "."
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

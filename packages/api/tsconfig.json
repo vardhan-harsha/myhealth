@@ -1,0 +1,28 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "./dist",
+        "paths": {
+            "@helix/api": [
+                "./src/index.ts"
+            ],
+            "@helix/api/*": [
+                "./src/*"
+            ],
+            "@helix/auth": [
+                "../auth/src/index.ts"
+            ],
+            "@helix/db": [
+                "../db/src/index.ts"
+            ]
+        }
+    },
+    "include": [
+        "."
+    ],
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

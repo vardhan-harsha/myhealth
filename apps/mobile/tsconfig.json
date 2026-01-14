@@ -1,0 +1,26 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "@helix/api": [
+        "../../packages/api/src/index.ts"
+      ],
+      "@helix/api/*": [
+        "../../packages/api/src/*"
+      ],
+      "@helix/auth": [
+        "../../packages/auth/src/index.ts"
+      ],
+      "@helix/auth/*": [
+        "../../packages/auth/src/*"
+      ],
+      "@helix/db": [
+        "../../packages/db/src/index.ts"
+      ],
+      "@helix/db/*": [
+        "../../packages/db/src/*"
+      ]
+    }
+  }
+}
