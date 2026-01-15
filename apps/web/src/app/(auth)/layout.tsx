@@ -1,4 +1,5 @@
 import { AppLogo } from "@/components/app-logo";
+import { AuthCarousel } from "@/components/auth/auth-carousel";
 
 export default function AuthLayout({
     children,
@@ -15,17 +16,8 @@ export default function AuthLayout({
                     </div>
                 </div>
             </div>
-            <div className="bg-muted relative hidden lg:block">
-                <div className="absolute inset-0 flex items-center justify-center p-8">
-                    <div className="max-w-md space-y-4 text-center">
-                        <h2 className="text-3xl font-bold tracking-tight">
-                            Transform Your Health Journey
-                        </h2>
-                        <p className="text-muted-foreground text-lg">
-                            Track your vitals, monitor your progress, and unlock insights that empower you to make better health decisions every day.
-                        </p>
-                    </div>
-                </div>
+            <div className="relative hidden lg:block">
+                <AuthCarousel />
             </div>
         </div>
     );

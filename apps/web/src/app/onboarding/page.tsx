@@ -155,7 +155,7 @@ export default function OnboardingPage() {
         <div className="relative flex w-full overflow-hidden bg-card">
 
             {/* LEFT SIDE - FORM */}
-            <div className="w-full lg:w-[60%] flex flex-col justify-center px-8 py-10 lg:px-16 lg:py-14 xl:px-24 relative">
+            <div className="w-full lg:w-[60%] flex flex-col justify-center px-8 py-10 lg:px-16 lg:py-14 xl:px-24 relative overflow-auto">
 
                 {/* Header Group */}
                 <div className="mb-12 space-y-6">

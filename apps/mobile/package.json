@@ -15,8 +15,20 @@
     "ios:preview": "APP_ENV=preview expo start --ios",
     "ios:production": "APP_ENV=production expo start --ios",
     "web": "APP_ENV=development expo start --web",
+    "build:all": "eas build --platform all",
+    "build:ios": "eas build --platform ios",
+    "build:android": "eas build --platform android",
     "build:preview": "APP_ENV=preview eas build --profile preview",
-    "build:production": "APP_ENV=production eas build --profile production"
+    "build:production": "APP_ENV=production eas build --profile production",
+    "build:ios:preview": "APP_ENV=preview eas build --platform ios --profile preview",
+    "build:ios:production": "APP_ENV=production eas build --platform ios --profile production",
+    "build:android:preview": "APP_ENV=preview eas build --platform android --profile preview",
+    "build:android:production": "APP_ENV=production eas build --platform android --profile production",
+    "submit:ios": "eas submit --platform ios",
+    "submit:android": "eas submit --platform android",
+    "update": "eas update",
+    "update:preview": "eas update --branch preview",
+    "update:production": "eas update --branch production"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
