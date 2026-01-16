@@ -1,3 +1,4 @@
+import { dailyLogRouter } from "./routers/daily-log";
 import { onboardingRouter } from "./routers/onboarding";
 import { postRouter } from "./routers/post";
 import { createCallerFactory, createTRPCRouter } from "./trpc";
@@ -8,6 +9,7 @@ import { createCallerFactory, createTRPCRouter } from "./trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
+  dailyLog: dailyLogRouter,
   onboarding: onboardingRouter,
   post: postRouter,
 });

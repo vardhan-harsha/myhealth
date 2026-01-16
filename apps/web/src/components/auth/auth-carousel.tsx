@@ -5,22 +5,22 @@ import { useEffect, useState } from "react";
 
 const carouselSlides = [
     {
-        image: "/assets/auth/natural-health.png",
+        image: "/assets/auth/natural-health.webp",
         title: "Control the Controllables",
         description: "Master your daily inputs: nutrition, training, and sleep for a programmable physique.",
     },
     {
-        image: "/assets/auth/active-lifestyle.png",
+        image: "/assets/auth/active-lifestyle.webp",
         title: "The 90-Year Lifestyle",
         description: "Transform your health journey with AI-powered guidance and sustainable fitness.",
     },
     {
-        image: "/assets/auth/progress-tracking.png",
+        image: "/assets/auth/progress-tracking.webp",
         title: "Track Your Progress",
         description: "Monitor your vitals and unlock insights that empower better health decisions.",
     },
     {
-        image: "/assets/auth/wellness-balance.png",
+        image: "/assets/auth/wellness-balance.webp",
         title: "Achieve Balance",
         description: "Build lasting wellness through mindful practices and personalized coaching.",
     },
