@@ -9,9 +9,14 @@ import { Dumbbell } from "lucide-react";
 import { api } from "@/trpc/react";
 import { useToast } from "@/hooks/use-toast";
 
+interface DailyLogData {
+    activityMinutes?: number | null;
+    activityIntensity?: "light" | "moderate" | "intense" | null;
+}
+
 interface ActivityCardProps {
     logDate: string;
-    initialData: any;
+    initialData: DailyLogData | null;
 }
 
 export function ActivityCard({ logDate, initialData }: ActivityCardProps) {
