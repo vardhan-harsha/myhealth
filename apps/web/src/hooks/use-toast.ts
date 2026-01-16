@@ -13,6 +13,8 @@ const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>();
 
 type Toast = ToastProps & {
     id: string;
+    open?: boolean;
+    onOpenChange?: (open: boolean) => void;
 };
 
 type ToasterToast = Toast;
