@@ -11,7 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 
 interface DailyLogData {
     activityMinutes?: number | null;
-    activityIntensity?: "light" | "moderate" | "intense" | null;
+    activityIntensity?: string | null;
 }
 
 interface ActivityCardProps {
