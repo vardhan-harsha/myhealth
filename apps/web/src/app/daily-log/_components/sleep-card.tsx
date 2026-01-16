@@ -9,9 +9,13 @@ import { Moon } from "lucide-react";
 import { api } from "@/trpc/react";
 import { useToast } from "@/hooks/use-toast";
 
+interface DailyLogData {
+    sleepHours?: number | null;
+}
+
 interface SleepCardProps {
     logDate: string;
-    initialData: any;
+    initialData: DailyLogData | null;
 }
 
 export function SleepCard({ logDate, initialData }: SleepCardProps) {

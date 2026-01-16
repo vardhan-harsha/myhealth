@@ -36,8 +36,12 @@ const COACHES = [
     }
 ];
 
-export function Step5Coach({ onNext, onBack, data }: { onNext: (data: any) => void; onBack: () => void; data: any }) {
-    const [selectedCoach, setSelectedCoach] = useState(data.aiCoach || "");
+interface OnboardingData {
+    aiCoach?: string;
+}
+
+export function Step5Coach({ onNext, onBack, data }: { onNext: (data: Partial<OnboardingData>) => void; onBack: () => void; data: Partial<OnboardingData> }) {
+    const [selectedCoach, setSelectedCoach] = useState(data.aiCoach ?? "");
 
     const handleSubmit = () => {
         if (!selectedCoach) return toast.error("Please select a coach");

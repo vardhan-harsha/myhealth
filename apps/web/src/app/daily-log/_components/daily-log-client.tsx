@@ -9,8 +9,16 @@ import { SleepCard } from "./sleep-card";
 import { QuickInsights } from "./quick-insights";
 import { api } from "@/trpc/react";
 
+interface DailyLogData {
+    activityMinutes?: number | null;
+    activityIntensity?: string | null;
+    totalCalories?: number | null;
+    totalProtein?: number | null;
+    sleepHours?: number | null;
+}
+
 interface DailyLogClientProps {
-    initialLog: any;
+    initialLog: DailyLogData | null;
     initialStreak: { currentStreak: number; longestStreak: number };
     initialDate: string;
 }

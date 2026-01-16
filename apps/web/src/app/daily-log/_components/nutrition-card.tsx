@@ -9,9 +9,14 @@ import { Apple } from "lucide-react";
 import { api } from "@/trpc/react";
 import { useToast } from "@/hooks/use-toast";
 
+interface DailyLogData {
+    totalCalories?: number | null;
+    totalProtein?: number | null;
+}
+
 interface NutritionCardProps {
     logDate: string;
-    initialData: any;
+    initialData: DailyLogData | null;
 }
 
 export function NutritionCard({ logDate, initialData }: NutritionCardProps) {

@@ -1,9 +1,22 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Loader2, CheckCircle, ArrowRight } from "lucide-react";
+import { Loader2, CheckCircle } from "lucide-react";
 
-export function Step6Reveal({ onFinish, data }: { onFinish: () => void; data: any }) {
+interface OnboardingData {
+    goals?: {
+        primary?: string;
+    };
+    nutritionPreferences?: {
+        dietType?: string;
+    };
+    trainingPreferences?: {
+        days?: number;
+    };
+    aiCoach?: string;
+}
+
+export function Step6Reveal({ onFinish, data }: { onFinish: () => void; data: Partial<OnboardingData> }) {
     const [isGenerating, setIsGenerating] = useState(true);
 
     useEffect(() => {
@@ -42,26 +55,26 @@ export function Step6Reveal({ onFinish, data }: { onFinish: () => void; data: an
                 <div className="mx-auto bg-green-100 dark:bg-green-900/30 p-3 rounded-full mb-4 w-fit">
                     <CheckCircle className="h-8 w-8 text-green-600 dark:text-green-400" />
                 </div>
-                <h2 className="text-4xl font-bold mb-3 text-foreground">You're All Set!</h2>
+                <h2 className="text-4xl font-bold mb-3 text-foreground">You&apos;re All Set!</h2>
                 <p className="text-lg text-muted-foreground">Your personalized Helix plan is ready.</p>
             </div>
 
             <div className="space-y-4 text-center mb-12">
                 <p className="text-muted-foreground">
-                    We've set up your dashboard with:
+                    We&apos;ve set up your dashboard with:
                 </p>
                 <ul className="text-sm space-y-2 text-left bg-slate-50 dark:bg-slate-950 p-4 rounded-lg border max-w-md mx-auto">
                     <li className="flex gap-2">
-                        <span className="text-blue-500">✓</span> Custom {data.goals?.primary?.replace("_", " ")} Protocol
+                        <span className="text-blue-500">✓</span> Custom {data.goals?.primary?.replace("_", " ") ?? "fitness"} Protocol
                     </li>
                     <li className="flex gap-2">
-                        <span className="text-blue-500">✓</span> Nutrition targets ({data.nutritionPreferences?.dietType})
+                        <span className="text-blue-500">✓</span> Nutrition targets ({data.nutritionPreferences?.dietType ?? "balanced"})
                     </li>
                     <li className="flex gap-2">
-                        <span className="text-blue-500">✓</span> {data.trainingPreferences?.days} day/week training schedule
+                        <span className="text-blue-500">✓</span> {data.trainingPreferences?.days ?? 3} day/week training schedule
                     </li>
                     <li className="flex gap-2">
-                        <span className="text-blue-500">✓</span> AI Coach: {data.aiCoach}
+                        <span className="text-blue-500">✓</span> AI Coach: {data.aiCoach ?? "Guide"}
                     </li>
                 </ul>
             </div>
