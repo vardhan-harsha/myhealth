@@ -61,15 +61,15 @@ export function DailyLogClient({ initialLog, initialStreak, initialDate }: Daily
                 <div className="grid gap-6">
                     <ActivityCard
                         logDate={selectedDate}
-                        initialData={logData}
+                        initialData={logData ?? null}
                     />
                     <NutritionCard
                         logDate={selectedDate}
-                        initialData={logData}
+                        initialData={logData ?? null}
                     />
                     <SleepCard
                         logDate={selectedDate}
-                        initialData={logData}
+                        initialData={logData ?? null}
                     />
                     <QuickInsights />
                 </div>
