@@ -18,6 +18,48 @@ import { Loader2 } from "lucide-react";
 
 const TOTAL_STEPS = 6;
 
+interface SidebarContent {
+    title: string;
+    desc: string;
+    image: string;
+    color: string;
+}
+
+interface OnboardingIdentity {
+    name?: string;
+    gender?: string;
+    units?: string;
+}
+
+interface OnboardingGoals {
+    goals?: {
+        primary?: string;
+        challenges?: string[];
+    };
+}
+
+interface OnboardingMetrics {
+    metrics?: {
+        age?: string;
+        height?: string;
+        weight?: string;
+        activityLevel?: string;
+    };
+}
+
+interface OnboardingPreferences {
+    trainingPreferences?: {
+        days?: number;
+        duration?: string;
+    };
+    nutritionPreferences?: {
+        dietType?: string;
+        allergies?: string[];
+    };
+}
+
+type OnboardingStepData = Partial<OnboardingIdentity & OnboardingGoals & OnboardingMetrics & OnboardingPreferences & { aiCoach?: string }>;
+
 // Sidebar content config - using muted theme colors
 const SIDEBAR_CONTENT = {
     1: {
@@ -56,17 +98,17 @@ const SIDEBAR_CONTENT = {
         image: "/assets/onboarding/coach-guide.webp",
         color: "bg-violet-50 dark:bg-violet-950/20"
     }
-} as Record<number, any>;
+} as Record<number, SidebarContent>;
 
 export default function OnboardingPage() {
     const router = useRouter();
     const [step, setStep] = useState(1);
 
     // State for all steps
-    const [identity, setIdentity] = useState<any>({});
-    const [goals, setGoals] = useState<any>({});
-    const [metrics, setMetrics] = useState<any>({});
-    const [prefs, setPrefs] = useState<any>({});
+    const [identity, setIdentity] = useState<Partial<OnboardingIdentity>>({});
+    const [goals, setGoals] = useState<Partial<OnboardingGoals>>({});
+    const [metrics, setMetrics] = useState<Partial<OnboardingMetrics>>({});
+    const [prefs, setPrefs] = useState<Partial<OnboardingPreferences>>({});
     const [coach, setCoach] = useState<string>("");
 
     // Fetch existing state
@@ -102,7 +144,7 @@ export default function OnboardingPage() {
         }
     }, [existingData]);
 
-    const handleNext = async (stepData: any) => {
+    const handleNext = async (stepData: OnboardingStepData) => {
         try {
             if (step === 1) setIdentity(stepData);
             if (step === 2) setGoals(stepData);
