@@ -150,7 +150,7 @@ export default function OnboardingPage() {
             if (step === 2) setGoals(stepData);
             if (step === 3) setMetrics(stepData);
             if (step === 4) setPrefs(stepData);
-            if (step === 5) setCoach(stepData.aiCoach);
+            if (step === 5) setCoach(stepData.aiCoach ?? "");
 
             // FIX: Spread stepData to flattened object expected by backend
             await saveMutation.mutateAsync({
