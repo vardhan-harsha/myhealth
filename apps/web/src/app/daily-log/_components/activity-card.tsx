@@ -24,8 +24,17 @@ export function ActivityCard({ logDate, initialData }: ActivityCardProps) {
     const [activityMinutes, setActivityMinutes] = useState(
         initialData?.activityMinutes?.toString() ?? ""
     );
+
+    // Safely cast activityIntensity from database string to expected type
+    const getValidIntensity = (value: string | null | undefined): "light" | "moderate" | "intense" => {
+        if (value === "light" || value === "moderate" || value === "intense") {
+            return value;
+        }
+        return "moderate"; // default fallback
+    };
+
     const [intensity, setIntensity] = useState<"light" | "moderate" | "intense">(
-        initialData?.activityIntensity ?? "moderate"
+        getValidIntensity(initialData?.activityIntensity)
     );
 
     const upsertMutation = api.dailyLog.upsert.useMutation({
