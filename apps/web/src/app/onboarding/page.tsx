@@ -129,12 +129,12 @@ export default function OnboardingPage() {
     useEffect(() => {
         if (existingData) {
             // FIX: Access properties directly from existingData, not .userProfile
-            if (existingData.goals) setGoals(existingData.goals);
-            if (existingData.metrics) setMetrics(existingData.metrics);
+            if (existingData.goals) setGoals(existingData.goals as Partial<OnboardingGoals>);
+            if (existingData.metrics) setMetrics(existingData.metrics as Partial<OnboardingMetrics>);
             if (existingData.trainingPreferences) {
                 setPrefs({
-                    trainingPreferences: existingData.trainingPreferences,
-                    nutritionPreferences: existingData.nutritionPreferences
+                    trainingPreferences: existingData.trainingPreferences as OnboardingPreferences['trainingPreferences'],
+                    nutritionPreferences: existingData.nutritionPreferences as OnboardingPreferences['nutritionPreferences']
                 });
             }
             if (existingData.aiCoach) setCoach(existingData.aiCoach);
