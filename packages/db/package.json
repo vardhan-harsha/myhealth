@@ -11,7 +11,7 @@
         "push": "dotenv -e ../../apps/web/.env -- drizzle-kit push",
         "studio": "dotenv -e ../../apps/web/.env -- drizzle-kit studio",
         "generate": "dotenv -e ../../apps/web/.env -- drizzle-kit generate",
-        "migrate": "dotenv -e ../../apps/web/.env -- drizzle-kit migrate",
+        "migrate": "dotenv -e ../../apps/web/.env -- tsx migrate.ts",
         "create-tables": "dotenv -e ../../apps/web/.env -- tsx create-tables.ts"
     },
     "dependencies": {
