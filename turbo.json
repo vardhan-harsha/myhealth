@@ -14,6 +14,26 @@
                 ".next/**",
                 "!.next/cache/**",
                 "dist/**"
+            ],
+            "env": [
+                "BETTER_AUTH_SECRET",
+                "BETTER_AUTH_GITHUB_CLIENT_ID",
+                "BETTER_AUTH_GITHUB_CLIENT_SECRET",
+                "BETTER_AUTH_GOOGLE_CLIENT_ID",
+                "BETTER_AUTH_GOOGLE_CLIENT_SECRET",
+                "BETTER_AUTH_MICROSOFT_CLIENT_ID",
+                "BETTER_AUTH_MICROSOFT_CLIENT_SECRET",
+                "DATABASE_URL",
+                "POSTGRES_URL",
+                "POSTGRES_PRISMA_URL",
+                "DATABASE_URL_UNPOOLED",
+                "POSTGRES_URL_NON_POOLING",
+                "PGHOST",
+                "RESEND_API_KEY",
+                "EMAIL_FROM",
+                "NODE_ENV",
+                "NEXT_PUBLIC_APP_URL",
+                "NEXT_PUBLIC_APP_ENV"
             ]
         },
         "lint": {

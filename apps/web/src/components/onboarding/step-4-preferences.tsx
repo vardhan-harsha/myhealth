@@ -4,21 +4,31 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
-import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Utensils, Dumbbell } from "lucide-react";
 
-export function Step4Preferences({ onNext, onBack, data }: { onNext: (data: any) => void; onBack: () => void; data: any }) {
+interface OnboardingData {
+    trainingPreferences?: {
+        days?: number;
+        duration?: string;
+    };
+    nutritionPreferences?: {
+        dietType?: string;
+        allergies?: string[];
+    };
+}
+
+export function Step4Preferences({ onNext, onBack, data }: { onNext: (data: Partial<OnboardingData>) => void; onBack: () => void; data: Partial<OnboardingData> }) {
     const [activeTab, setActiveTab] = useState("training");
 
     // Training
-    const [trainingDays, setTrainingDays] = useState(data.trainingPreferences?.days || 3);
-    const [sessionDuration, setSessionDuration] = useState(data.trainingPreferences?.duration || "45");
+    const [trainingDays, setTrainingDays] = useState(data.trainingPreferences?.days ?? 3);
+    const [sessionDuration, setSessionDuration] = useState(data.trainingPreferences?.duration ?? "45");
 
     // Nutrition
-    const [dietType, setDietType] = useState(data.nutritionPreferences?.dietType || "omnivore");
-    const [allergies, setAllergies] = useState<string[]>(data.nutritionPreferences?.allergies || []);
+    const [dietType, setDietType] = useState(data.nutritionPreferences?.dietType ?? "omnivore");
+    const [allergies, setAllergies] = useState<string[]>(data.nutritionPreferences?.allergies ?? []);
 
     const toggleAllergy = (allergy: string) => {
         if (allergies.includes(allergy)) {
@@ -77,7 +87,7 @@ export function Step4Preferences({ onNext, onBack, data }: { onNext: (data: any)
                                 min={1}
                                 max={7}
                                 step={1}
-                                onValueChange={(vals) => setTrainingDays(vals[0])}
+                                onValueChange={(vals) => setTrainingDays(vals[0] ?? 3)}
                                 className="py-4"
                             />
                             <p className="text-xs text-muted-foreground">

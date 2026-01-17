@@ -30,9 +30,16 @@ const item = {
     show: { opacity: 1, y: 0 }
 };
 
-export function Step2Goals({ onNext, onBack, data }: { onNext: (data: any) => void; onBack: () => void; data: any }) {
-    const [primaryGoal, setPrimaryGoal] = useState<string>(data.goals?.primary || "");
-    const [challenges, setChallenges] = useState<string[]>(data.goals?.challenges || []);
+interface OnboardingData {
+    goals?: {
+        primary?: string;
+        challenges?: string[];
+    };
+}
+
+export function Step2Goals({ onNext, onBack, data }: { onNext: (data: Partial<OnboardingData>) => void; onBack: () => void; data: Partial<OnboardingData> }) {
+    const [primaryGoal, setPrimaryGoal] = useState<string>(data.goals?.primary ?? "");
+    const [challenges, setChallenges] = useState<string[]>(data.goals?.challenges ?? []);
 
     const toggleChallenge = (challenge: string) => {
         if (challenges.includes(challenge)) {

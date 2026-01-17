@@ -8,16 +8,26 @@ import { Ruler, Weight, Smartphone, Check, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export function Step3Metrics({ onNext, onBack, data }: { onNext: (data: any) => void; onBack: () => void; data: any }) {
+interface OnboardingData {
+    metrics?: {
+        age?: string;
+        height?: string;
+        weight?: string;
+        activityLevel?: string;
+    };
+    units?: string;
+}
+
+export function Step3Metrics({ onNext, onBack, data }: { onNext: (data: Partial<OnboardingData>) => void; onBack: () => void; data: Partial<OnboardingData> }) {
     const [isSyncing, setIsSyncing] = useState(false);
     const [isSynced, setIsSynced] = useState(false);
 
-    const [age, setAge] = useState(data.metrics?.age || "");
-    const [height, setHeight] = useState(data.metrics?.height || "");
-    const [weight, setWeight] = useState(data.metrics?.weight || "");
-    const [activityLevel, setActivityLevel] = useState(data.metrics?.activityLevel || "");
+    const [age, setAge] = useState(data.metrics?.age ?? "");
+    const [height, setHeight] = useState(data.metrics?.height ?? "");
+    const [weight, setWeight] = useState(data.metrics?.weight ?? "");
+    const [activityLevel, setActivityLevel] = useState(data.metrics?.activityLevel ?? "");
 
-    const units = data.units || "metric"; // from step 1
+    const units = data.units ?? "metric"; // from step 1
     const heightUnit = units === "metric" ? "cm" : "ft"; // Simplified for now
     const weightUnit = units === "metric" ? "kg" : "lbs";
 

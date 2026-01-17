@@ -34,7 +34,10 @@ module.exports = {
         },
         "extra": {
             "apiUrl": process.env.API_URL || "http://localhost:3000",
-            "environment": process.env.APP_ENV || "development"
+            "environment": process.env.APP_ENV || "development",
+            "eas": {
+                "projectId": "d01ce14a-09e2-46e0-b607-58443887b694"
+            }
         }
     }
 };

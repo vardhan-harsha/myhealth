@@ -8,10 +8,16 @@ import { toast } from "sonner";
 import { User, Ruler } from "lucide-react";
 import { motion } from "framer-motion";
 
-export function Step1Identity({ onNext, data }: { onNext: (data: any) => void; data: any }) {
-    const [name, setName] = useState(data.name || "");
-    const [gender, setGender] = useState(data.gender || "");
-    const [units, setUnits] = useState(data.units || "metric");
+interface OnboardingData {
+    name?: string;
+    gender?: string;
+    units?: string;
+}
+
+export function Step1Identity({ onNext, data }: { onNext: (data: Partial<OnboardingData>) => void; data: Partial<OnboardingData> }) {
+    const [name, setName] = useState(data.name ?? "");
+    const [gender, setGender] = useState(data.gender ?? "");
+    const [units, setUnits] = useState(data.units ?? "metric");
 
     const handleSubmit = () => {
         if (!name.trim()) return toast.error("Please enter your name");
@@ -29,8 +35,8 @@ export function Step1Identity({ onNext, data }: { onNext: (data: any) => void; d
             transition={{ duration: 0.4 }}
         >
             <div className="text-left mb-8">
-                <h2 className="text-4xl font-bold mb-3 text-foreground">Let's get to know you</h2>
-                <p className="text-lg text-muted-foreground">We'll customize the experience based on your identity.</p>
+                <h2 className="text-4xl font-bold mb-3 text-foreground">Let&apos;s get to know you</h2>
+                <p className="text-lg text-muted-foreground">We&apos;ll customize the experience based on your identity.</p>
             </div>
 
             <div className="space-y-6 mb-12">

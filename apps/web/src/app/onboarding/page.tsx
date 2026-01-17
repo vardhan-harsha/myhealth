@@ -18,6 +18,48 @@ import { Loader2 } from "lucide-react";
 
 const TOTAL_STEPS = 6;
 
+interface SidebarContent {
+    title: string;
+    desc: string;
+    image: string;
+    color: string;
+}
+
+interface OnboardingIdentity {
+    name?: string;
+    gender?: string;
+    units?: string;
+}
+
+interface OnboardingGoals {
+    goals?: {
+        primary?: string;
+        challenges?: string[];
+    };
+}
+
+interface OnboardingMetrics {
+    metrics?: {
+        age?: string;
+        height?: string;
+        weight?: string;
+        activityLevel?: string;
+    };
+}
+
+interface OnboardingPreferences {
+    trainingPreferences?: {
+        days?: number;
+        duration?: string;
+    };
+    nutritionPreferences?: {
+        dietType?: string;
+        allergies?: string[];
+    };
+}
+
+type OnboardingStepData = Partial<OnboardingIdentity & OnboardingGoals & OnboardingMetrics & OnboardingPreferences & { aiCoach?: string }>;
+
 // Sidebar content config - using muted theme colors
 const SIDEBAR_CONTENT = {
     1: {
@@ -56,17 +98,17 @@ const SIDEBAR_CONTENT = {
         image: "/assets/onboarding/coach-guide.webp",
         color: "bg-violet-50 dark:bg-violet-950/20"
     }
-} as Record<number, any>;
+} as Record<number, SidebarContent>;
 
 export default function OnboardingPage() {
     const router = useRouter();
     const [step, setStep] = useState(1);
 
     // State for all steps
-    const [identity, setIdentity] = useState<any>({});
-    const [goals, setGoals] = useState<any>({});
-    const [metrics, setMetrics] = useState<any>({});
-    const [prefs, setPrefs] = useState<any>({});
+    const [identity, setIdentity] = useState<Partial<OnboardingIdentity>>({});
+    const [goals, setGoals] = useState<Partial<OnboardingGoals>>({});
+    const [metrics, setMetrics] = useState<Partial<OnboardingMetrics>>({});
+    const [prefs, setPrefs] = useState<Partial<OnboardingPreferences>>({});
     const [coach, setCoach] = useState<string>("");
 
     // Fetch existing state
@@ -87,12 +129,12 @@ export default function OnboardingPage() {
     useEffect(() => {
         if (existingData) {
             // FIX: Access properties directly from existingData, not .userProfile
-            if (existingData.goals) setGoals(existingData.goals);
-            if (existingData.metrics) setMetrics(existingData.metrics);
+            if (existingData.goals) setGoals(existingData.goals as Partial<OnboardingGoals>);
+            if (existingData.metrics) setMetrics(existingData.metrics as Partial<OnboardingMetrics>);
             if (existingData.trainingPreferences) {
                 setPrefs({
-                    trainingPreferences: existingData.trainingPreferences,
-                    nutritionPreferences: existingData.nutritionPreferences
+                    trainingPreferences: existingData.trainingPreferences as OnboardingPreferences['trainingPreferences'],
+                    nutritionPreferences: existingData.nutritionPreferences as OnboardingPreferences['nutritionPreferences']
                 });
             }
             if (existingData.aiCoach) setCoach(existingData.aiCoach);
@@ -102,13 +144,13 @@ export default function OnboardingPage() {
         }
     }, [existingData]);
 
-    const handleNext = async (stepData: any) => {
+    const handleNext = async (stepData: OnboardingStepData) => {
         try {
             if (step === 1) setIdentity(stepData);
             if (step === 2) setGoals(stepData);
             if (step === 3) setMetrics(stepData);
             if (step === 4) setPrefs(stepData);
-            if (step === 5) setCoach(stepData.aiCoach);
+            if (step === 5) setCoach(stepData.aiCoach ?? "");
 
             // FIX: Spread stepData to flattened object expected by backend
             await saveMutation.mutateAsync({
@@ -139,23 +181,29 @@ export default function OnboardingPage() {
         );
     }
 
-    const combinedData = {
+    const combinedData: Partial<OnboardingStepData> = {
         ...identity,
-        goals,
-        metrics,
         ...prefs,
         aiCoach: coach,
-        ...existingData // FIX: Fallback to existingData directly
+        // Type cast existingData properties to handle null values from database
+        ...(existingData ? {
+            gender: existingData.gender ?? undefined,
+            units: existingData.units ?? undefined,
+            aiCoach: existingData.aiCoach ?? undefined,
+        } : {}),
+        // goals and metrics are already the nested objects from state
+        goals: goals.goals ?? (existingData?.goals as OnboardingGoals['goals']),
+        metrics: metrics.metrics ?? (existingData?.metrics as OnboardingMetrics['metrics']),
     };
 
-    const sidebarInfo = SIDEBAR_CONTENT[step] || SIDEBAR_CONTENT[1];
+    const sidebarInfo = SIDEBAR_CONTENT[step] ?? SIDEBAR_CONTENT[1]!;
 
     return (
         // Main Card Container - Unified Surface
         <div className="relative flex w-full overflow-hidden bg-card">
 
             {/* LEFT SIDE - FORM */}
-            <div className="w-full lg:w-[60%] flex flex-col justify-center px-8 py-10 lg:px-16 lg:py-14 xl:px-24 relative">
+            <div className="w-full lg:w-[60%] flex flex-col justify-center px-8 py-10 lg:px-16 lg:py-14 xl:px-24 relative overflow-auto">
 
                 {/* Header Group */}
                 <div className="mb-12 space-y-6">
