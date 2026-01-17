@@ -4,7 +4,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "expo start",
-    "dev": "APP_ENV=development expo start",
+    "dev": "APP_ENV=development expo start --clear",
     "clear": "rm -rf .expo node_modules/.cache",
     "dev:preview": "APP_ENV=preview expo start",
     "dev:production": "APP_ENV=production expo start",

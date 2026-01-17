@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { View, Text, TextInput, Alert, ScrollView } from 'react-native';
+import { View, Text, TextInput, Alert } from 'react-native';
+import * as Linking from 'expo-linking';
 import { authClient } from '~/lib/auth-client';
 import { Button } from '../ui/button';
 import { ButtonText } from '../ui/text';
 import { Github, Mail } from 'lucide-react-native';
+import { GoogleIcon, MicrosoftIcon } from '../ui/icons';
 
 type AuthFormProps = {
     mode: 'login' | 'signup' | 'forgot-password';
@@ -94,9 +96,12 @@ export function AuthForm({ mode, onSuccess, onSwitchMode }: AuthFormProps) {
     const handleOAuthSignIn = async (provider: 'github' | 'google' | 'microsoft') => {
         setIsLoading(true);
         try {
+            const callbackURL = Linking.createURL('/');
+            console.log('🔗 OAuth callback URL:', callbackURL);
+
             await authClient.signIn.social({
                 provider,
-                callbackURL: '/dashboard',
+                callbackURL,
             });
         } catch (err: any) {
             Alert.alert('OAuth sign-in failed', err?.message ?? 'Please try again.');
@@ -219,7 +224,15 @@ export function AuthForm({ mode, onSuccess, onSwitchMode }: AuthFormProps) {
                             onPress={() => handleOAuthSignIn('google')}
                             disabled={isLoading}
                         >
-                            <Mail size={20} color="currentColor" />
+                            <GoogleIcon />
+                        </Button>
+                        <Button
+                            variant="outline"
+                            className="flex-1"
+                            onPress={() => handleOAuthSignIn('microsoft')}
+                            disabled={isLoading}
+                        >
+                            <MicrosoftIcon />
                         </Button>
                     </View>
                 </>
