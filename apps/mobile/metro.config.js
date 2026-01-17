@@ -17,7 +17,7 @@ config.resolver.nodeModulesPaths = [
 ];
 
 // 3. Force Metro to resolve (sub)dependencies from the `nodeModulesPaths`
-config.resolver.disableHierarchicalLookup = true;
+// config.resolver.disableHierarchicalLookup = true;
 
 // 4. Add extra node modules to resolve from (critical for pnpm)
 const extraNodeModules = new Proxy(

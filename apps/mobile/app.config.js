@@ -11,6 +11,7 @@ module.exports = {
         "name": "helix",
         "slug": "helix",
         "version": "1.0.0",
+        "scheme": "helix",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
         "userInterfaceStyle": "light",
