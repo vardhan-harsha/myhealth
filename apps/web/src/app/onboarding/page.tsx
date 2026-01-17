@@ -181,16 +181,22 @@ export default function OnboardingPage() {
         );
     }
 
-    const combinedData = {
+    const combinedData: Partial<OnboardingStepData> = {
         ...identity,
-        goals,
-        metrics,
         ...prefs,
         aiCoach: coach,
-        ...existingData // FIX: Fallback to existingData directly
+        // Type cast existingData properties to handle null values from database
+        ...(existingData ? {
+            gender: existingData.gender ?? undefined,
+            units: existingData.units ?? undefined,
+            aiCoach: existingData.aiCoach ?? undefined,
+        } : {}),
+        // goals and metrics are already the nested objects from state
+        goals: goals.goals ?? (existingData?.goals as OnboardingGoals['goals']),
+        metrics: metrics.metrics ?? (existingData?.metrics as OnboardingMetrics['metrics']),
     };
 
-    const sidebarInfo = SIDEBAR_CONTENT[step] || SIDEBAR_CONTENT[1];
+    const sidebarInfo = SIDEBAR_CONTENT[step] ?? SIDEBAR_CONTENT[1]!;
 
     return (
         // Main Card Container - Unified Surface
