@@ -604,7 +604,96 @@ export function ProductList({ products, onProductPress }: ProductListProps) {
 }
 ```
 
-## EAS Build & Submit
+### Pattern 7: Authentication with Better Auth (Expo)
+
+Follow this integration pattern for deep linking and secure storage.
+
+**1. Metro Config (`metro.config.js`)**:
+Enable `.mjs` support for `better-auth` files:
+
+```javascript
+config.resolver.sourceExts.push('mjs');
+```
+
+**2. Server-Side Config (`packages/auth/src/config.ts`)**:
+You MUST register the `openAPI` plugin to expose the proxy endpoints required by the expo client:
+
+```typescript
+import { openAPI } from "better-auth/plugins";
+
+export const auth = betterAuth({
+    // ...
+    plugins: [
+        openAPI(), // Required for /expo-authorization-proxy
+    ]
+});
+```
+
+**3. Expo Config (`app.config.js`)**:
+Ensure your `scheme` is defined (e.g., "your-app-scheme").
+
+**4. Client Setup (`lib/auth-client.ts`)**:
+
+```typescript
+import { createAuthClient } from "better-auth/react";
+import { expoClient } from "@better-auth/expo/client";
+import * as SecureStore from "expo-secure-store";
+import Constants from "expo-constants";
+
+export const authClient = createAuthClient({
+  baseURL: Constants.expoConfig?.extra?.apiUrl, // e.g. http://localhost:3000
+  plugins: [
+    expoClient({
+      scheme: "your-app-scheme",
+      storage: SecureStore,
+    })
+  ]
+});
+export const { useSession, signOut, signIn, signUp } = authClient;
+```
+
+### Pattern 8: Reanimated Best Practices
+
+#### Handling Animations in Loops
+
+**Problem**: Using `entering`/`exiting` props inside a map loop often causes "Reading/Writing value during render" warnings in Reanimated 3+. This happens because layout animations try to snapshot views during the render commit phase.
+
+**Solution**:
+
+1. **Extract the component**: Move the rendered item into its own component.
+2. **Use Style Animations**: Instead of entering/exiting layout props, use `useAnimatedStyle` to control opacity/transform.
+
+```typescript
+// ✅ Good: Component extracts shared value logic
+function CarouselSlide({ isActive }) {
+  const style = useAnimatedStyle(() => ({
+    opacity: withTiming(isActive ? 1 : 0),
+    zIndex: isActive ? 10 : 0, 
+  }));
+  
+  return <Animated.View style={[style, StyleSheet.absoluteFill]} />;
+}
+
+// Parent
+{items.map((item, i) => (
+  <CarouselSlide isActive={i === activeIndex} key={i} />
+))}
+```
+
+### Pattern 9: Metro & Monorepo Configuration
+
+When working in a monorepo (e.g., TurboRepo + Expo):
+
+1. **Watch Folders**: Ensure Metro watches the workspace root.
+2. **Node Modules**: Configure `resolver.nodeModulesPaths`.
+3. **Hierarchy**: `config.resolver.disableHierarchicalLookup = true` is often recommended for monorepos, BUT if you face resolution errors (like `expo-router/entry`), try commenting it out to allow standard node resolution.
+4. **Package Exports**: Enable `unstable_enablePackageExports = true` for modern packages like `expo-router`.
+
+```javascript
+const workspaceRoot = path.resolve(__dirname, '../..');
+config.watchFolders = [workspaceRoot];
+config.resolver.unstable_enablePackageExports = true;
+```
 
 ```json
 // eas.json
@@ -650,6 +739,7 @@ eas update --branch production --message "Bug fixes"
 ## Best Practices
 
 ### Do's
+
 - **Use Expo** - Faster development, OTA updates, managed native code
 - **FlashList over FlatList** - Better performance for long lists
 - **Memoize components** - Prevent unnecessary re-renders
@@ -657,6 +747,7 @@ eas update --branch production --message "Bug fixes"
 - **Test on real devices** - Simulators miss real-world issues
 
 ### Don'ts
+
 - **Don't inline styles** - Use StyleSheet.create for performance
 - **Don't fetch in render** - Use useEffect or React Query
 - **Don't ignore platform differences** - Test on both iOS and Android
