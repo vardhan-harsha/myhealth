@@ -30,7 +30,8 @@ module.exports = {
             }
         },
         "web": {
-            "favicon": "./assets/favicon.png"
+            "favicon": "./assets/favicon.png",
+            "bundler": "metro"
         },
         "extra": {
             "apiUrl": process.env.API_URL || "http://localhost:3000",
