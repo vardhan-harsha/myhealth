@@ -3,5 +3,5 @@
     "buildCommand": "cd ../.. && npx turbo run build --filter=@helix/web",
     "installCommand": "pnpm install",
     "framework": "nextjs",
-    "outputDirectory": "apps/web/.next"
+    "outputDirectory": ".next"
 }
