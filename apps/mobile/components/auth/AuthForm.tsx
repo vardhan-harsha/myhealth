@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { View, Text, TextInput, Alert, ScrollView } from 'react-native';
-import { authClient } from '@helix/auth/client';
+import { authClient } from '~/lib/auth-client';
 import { Button } from '../ui/button';
 import { ButtonText } from '../ui/text';
 import { Github, Mail } from 'lucide-react-native';

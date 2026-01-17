@@ -1,5 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { openAPI } from "better-auth/plugins";
 
 import { env } from "./env";
 import { db } from "@helix/db";
@@ -89,7 +90,10 @@ export const auth = betterAuth({
       clientSecret: env.BETTER_AUTH_MICROSOFT_CLIENT_SECRET,
       redirectURI: `${baseURL}/api/auth/callback/microsoft`,
     },
-  }
+  },
+  plugins: [
+    openAPI(),
+  ]
 });
 
 export type Session = typeof auth.$Infer.Session;

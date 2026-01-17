@@ -1,5 +1,5 @@
 import { Redirect, Stack } from 'expo-router';
-import { useSession } from '@helix/auth/client';
+import { useSession } from '~/lib/auth-client';
 import { View, ActivityIndicator } from 'react-native';
 
 export default function AppLayout() {

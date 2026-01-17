@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native';
 import { Button } from '../../components/ui/button';
 import { ButtonText } from '../../components/ui/text';
-import { authClient } from '@helix/auth/client';
+import { authClient, signOut } from '~/lib/auth-client';
 
 export default function DashboardScreen() {
     const handleSignOut = async () => {
-        await authClient.signOut();
+        await signOut();
     };
 
     return (

@@ -38,5 +38,6 @@ config.resolver.extraNodeModules = extraNodeModules;
 
 // 5. Enable Expo Router
 config.resolver.unstable_enablePackageExports = true;
+config.resolver.sourceExts.push('mjs');
 
 module.exports = withNativeWind(config, { input: './global.css' });
