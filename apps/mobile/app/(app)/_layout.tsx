@@ -1,4 +1,4 @@
-import { Redirect, Stack } from 'expo-router';
+import { Redirect, Slot } from 'expo-router';
 import { useSession } from '~/lib/auth-client';
 import { View, ActivityIndicator } from 'react-native';
 
@@ -19,11 +19,6 @@ export default function AppLayout() {
         return <Redirect href="/(auth)/login" />;
     }
 
-    return (
-        <Stack
-            screenOptions={{
-                headerShown: false,
-            }}
-        />
-    );
+    // Use Slot to allow nested (tabs) routing
+    return <Slot />;
 }

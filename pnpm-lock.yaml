@@ -454,7 +454,7 @@ importers:
     dependencies:
       '@better-auth/expo':
         specifier: ^1.4.14
-        version: 1.4.14(eab23y2fhmkefh5bn64ymqzr3y)
+        version: 1.4.14(4n5w2etvury4xxa6lqdmstzove)
       '@helix/db':
         specifier: workspace:*
         version: link:../db
@@ -463,7 +463,7 @@ importers:
         version: 0.11.1(typescript@5.9.3)(zod@3.25.76)
       better-auth:
         specifier: ^1.4.14
-        version: 1.4.14(drizzle-orm@0.41.0(gel@2.2.0)(kysely@0.28.9)(postgres@3.4.7))(next@15.5.9(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        version: 1.4.14(drizzle-kit@0.30.6)(drizzle-orm@0.41.0(gel@2.2.0)(kysely@0.28.9)(postgres@3.4.7))(next@15.5.9(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       drizzle-orm:
         specifier: ^0.41.0
         version: 0.41.0(gel@2.2.0)(kysely@0.28.9)(postgres@3.4.7)
@@ -7856,7 +7856,7 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@better-auth/core@1.4.14(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.5))(jose@6.1.3)(kysely@0.28.9)(nanostores@1.1.0)':
+  '@better-auth/core@1.4.14(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@3.25.76))(jose@6.1.3)(kysely@0.28.9)(nanostores@1.1.0)':
     dependencies:
       '@better-auth/utils': 0.3.0
       '@better-fetch/fetch': 1.1.21
@@ -7867,11 +7867,22 @@ snapshots:
       nanostores: 1.1.0
       zod: 4.3.5
 
-  '@better-auth/expo@1.4.14(eab23y2fhmkefh5bn64ymqzr3y)':
+  '@better-auth/core@1.4.14(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.5))(jose@6.1.3)(kysely@0.28.9)(nanostores@1.1.0)':
     dependencies:
-      '@better-auth/core': 1.4.14(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@4.3.5))(jose@6.1.3)(kysely@0.28.9)(nanostores@1.1.0)
+      '@better-auth/utils': 0.3.0
       '@better-fetch/fetch': 1.1.21
-      better-auth: 1.4.14(drizzle-orm@0.41.0(gel@2.2.0)(kysely@0.28.9)(postgres@3.4.7))(next@15.5.9(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@standard-schema/spec': 1.1.0
+      better-call: 1.1.8(zod@4.3.5)
+      jose: 6.1.3
+      kysely: 0.28.9
+      nanostores: 1.1.0
+      zod: 4.3.5
+
+  '@better-auth/expo@1.4.14(4n5w2etvury4xxa6lqdmstzove)':
+    dependencies:
+      '@better-auth/core': 1.4.14(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.21)(better-call@1.1.8(zod@3.25.76))(jose@6.1.3)(kysely@0.28.9)(nanostores@1.1.0)
+      '@better-fetch/fetch': 1.1.21
+      better-auth: 1.4.14(drizzle-kit@0.30.6)(drizzle-orm@0.41.0(gel@2.2.0)(kysely@0.28.9)(postgres@3.4.7))(next@15.5.9(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       better-call: 1.1.8(zod@4.3.5)
       expo-network: 8.0.8(expo@54.0.31(@babel/core@7.28.5)(@expo/metro-runtime@6.1.2)(expo-router@6.0.21)(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.2.7)(react@19.1.0))(react@19.1.0))(react@19.1.0)
       zod: 4.3.5
@@ -11490,7 +11501,7 @@ snapshots:
       '@better-fetch/fetch': 1.1.21
       '@noble/ciphers': 2.1.1
       '@noble/hashes': 2.0.1
-      better-call: 1.1.8(zod@3.25.76)
+      better-call: 1.1.8(zod@4.3.5)
       defu: 6.1.4
       jose: 6.1.3
       kysely: 0.28.9

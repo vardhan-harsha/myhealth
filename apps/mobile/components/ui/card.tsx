@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { cn } from '~/lib/utils';
 
 const Card = React.forwardRef<
@@ -30,10 +30,10 @@ const CardHeader = React.forwardRef<
 CardHeader.displayName = 'CardHeader';
 
 const CardTitle = React.forwardRef<
-    React.ElementRef<typeof View>,
-    React.ComponentPropsWithoutRef<typeof View>
+    React.ElementRef<typeof Text>,
+    React.ComponentPropsWithoutRef<typeof Text>
 >(({ className, ...props }, ref) => (
-    <View
+    <Text
         ref={ref}
         className={cn('text-2xl text-card-foreground font-semibold leading-none tracking-tight', className)}
         {...props}
@@ -42,10 +42,10 @@ const CardTitle = React.forwardRef<
 CardTitle.displayName = 'CardTitle';
 
 const CardDescription = React.forwardRef<
-    React.ElementRef<typeof View>,
-    React.ComponentPropsWithoutRef<typeof View>
+    React.ElementRef<typeof Text>,
+    React.ComponentPropsWithoutRef<typeof Text>
 >(({ className, ...props }, ref) => (
-    <View
+    <Text
         ref={ref}
         className={cn('text-sm text-muted-foreground', className)}
         {...props}
