@@ -6,22 +6,7 @@ import { httpBatchLink } from '@trpc/client';
 import { useState } from 'react';
 import { trpc } from '../utils/api';
 import superjson from 'superjson';
-import Constants from 'expo-constants';
-
-// Get API URL from environment configuration
-const getApiUrl = () => {
-    try {
-        const url = Constants.expoConfig?.extra?.apiUrl || 'http://localhost:3000';
-        console.log('📡 API URL from config:', url);
-        // Ensure the URL is valid and properly formatted
-        const validUrl = url && url.startsWith('http') ? url : 'http://localhost:3000';
-        console.log('📡 Using API URL:', validUrl);
-        return validUrl;
-    } catch (error) {
-        console.error('❌ Failed to get API URL from config:', error);
-        return 'http://localhost:3000';
-    }
-};
+import { getApiUrl } from '../lib/api-url';
 
 export default function RootLayout() {
     const [queryClient] = useState(() => new QueryClient());

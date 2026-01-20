@@ -22,9 +22,11 @@ module.exports = {
             "backgroundColor": "#ffffff"
         },
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "bundleIdentifier": "com.mokalabs.helix"
         },
         "android": {
+            "package": "com.mokalabs.helix",
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#ffffff"

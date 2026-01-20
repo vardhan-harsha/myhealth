@@ -2,7 +2,8 @@ import { LogBox } from 'react-native';
 
 // Ignore specific warnings
 LogBox.ignoreLogs([
-    'SafeAreaView has been deprecated',
+    /SafeAreaView has been deprecated/,
+    'SafeAreaView has been deprecated and will be removed in a future release',
 ]);
 
 import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
