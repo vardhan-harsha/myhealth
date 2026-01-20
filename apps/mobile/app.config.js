@@ -11,6 +11,7 @@ module.exports = {
         "name": "helix",
         "slug": "helix",
         "version": "1.0.0",
+        "scheme": "helix",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
         "userInterfaceStyle": "light",
@@ -21,16 +22,19 @@ module.exports = {
             "backgroundColor": "#ffffff"
         },
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "bundleIdentifier": "com.mokalabs.helix"
         },
         "android": {
+            "package": "com.mokalabs.helix",
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             }
         },
         "web": {
-            "favicon": "./assets/favicon.png"
+            "favicon": "./assets/favicon.png",
+            "bundler": "metro"
         },
         "extra": {
             "apiUrl": process.env.API_URL || "http://localhost:3000",

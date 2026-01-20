@@ -110,7 +110,7 @@ export function AuthForm({
         try {
             await authClient.signIn.social({
                 provider,
-                callbackURL: "/",
+                callbackURL: "/dashboard",
             });
         } catch (err) {
             toast.error("OAuth sign-in failed", {

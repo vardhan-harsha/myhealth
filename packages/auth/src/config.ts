@@ -1,5 +1,6 @@
-import { betterAuth } from "better-auth";
+import { betterAuth, type BetterAuthPlugin } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { expo } from "@better-auth/expo";
 
 import { env } from "./env";
 import { db } from "@helix/db";
@@ -27,7 +28,13 @@ const baseURL = getBaseURL();
 
 export const auth = betterAuth({
   baseURL,
-  trustedOrigins: [baseURL],
+  trustedOrigins: [
+    baseURL,
+    "helix://",
+    "helix://app", // Explicitly trusted app origin
+    "exp://",
+    "http://localhost:8081", // sometimes ios simulator uses localhost
+  ],
   database: drizzleAdapter(db, {
     provider: "pg",
   }),
@@ -89,7 +96,10 @@ export const auth = betterAuth({
       clientSecret: env.BETTER_AUTH_MICROSOFT_CLIENT_SECRET,
       redirectURI: `${baseURL}/api/auth/callback/microsoft`,
     },
-  }
+  },
+  plugins: [
+    expo() as unknown as BetterAuthPlugin,
+  ]
 });
 
 export type Session = typeof auth.$Infer.Session;
