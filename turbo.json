@@ -47,6 +47,26 @@
         "dev": {
             "cache": false,
             "persistent": true
+        },
+        "db:generate": {
+            "cache": false,
+            "inputs": ["$TURBO_DEFAULT$", ".env"]
+        },
+        "db:migrate": {
+            "cache": false,
+            "inputs": ["$TURBO_DEFAULT$", ".env"],
+            "env": ["DATABASE_URL"]
+        },
+        "db:push": {
+            "cache": false,
+            "inputs": ["$TURBO_DEFAULT$", ".env"],
+            "env": ["DATABASE_URL"]
+        },
+        "db:studio": {
+            "cache": false,
+            "persistent": true,
+            "inputs": ["$TURBO_DEFAULT$", ".env"],
+            "env": ["DATABASE_URL"]
         }
     }
 }
