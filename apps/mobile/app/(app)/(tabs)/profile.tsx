@@ -1,8 +1,8 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card';
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import { Button } from '~/components/ui/button';
 import { ButtonText } from '~/components/ui/text';
 import { signOut } from '~/lib/auth-client';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import {
     User,
     Mail,
@@ -19,21 +19,21 @@ import {
 
 // Settings sections
 const accountSettings = [
-    { id: 1, title: 'Personal Information', icon: User, color: '#7033ff' },
-    { id: 2, title: 'Email & Password', icon: Mail, color: '#3276e4' },
-    { id: 3, title: 'Notifications', icon: Bell, color: '#fd822b' },
-    { id: 4, title: 'Privacy & Security', icon: Lock, color: '#4ac885' },
+    { id: 1, title: 'Personal Information', icon: User, color: '#845EF7', bg: '#845EF715' },
+    { id: 2, title: 'Email & Password', icon: Mail, color: '#4A90E2', bg: '#D4EBF8' },
+    { id: 3, title: 'Notifications', icon: Bell, color: '#FF922B', bg: '#FF922B15' },
+    { id: 4, title: 'Privacy & Security', icon: Lock, color: '#4CAF50', bg: '#E7F5E8' },
 ];
 
 const appSettings = [
-    { id: 1, title: 'Theme', icon: Moon, color: '#7033ff', value: 'Light' },
-    { id: 2, title: 'Language', icon: Globe, color: '#3276e4', value: 'English' },
+    { id: 1, title: 'Theme', icon: Moon, color: '#845EF7', bg: '#845EF715', value: 'Light' },
+    { id: 2, title: 'Language', icon: Globe, color: '#4A90E2', bg: '#D4EBF8', value: 'English' },
 ];
 
 const supportSettings = [
-    { id: 1, title: 'Help Center', icon: HelpCircle, color: '#7033ff' },
-    { id: 2, title: 'Terms of Service', icon: FileText, color: '#3276e4' },
-    { id: 3, title: 'Privacy Policy', icon: Shield, color: '#4ac885' },
+    { id: 1, title: 'Help Center', icon: HelpCircle, color: '#845EF7', bg: '#845EF715' },
+    { id: 2, title: 'Terms of Service', icon: FileText, color: '#4A90E2', bg: '#D4EBF8' },
+    { id: 3, title: 'Privacy Policy', icon: Shield, color: '#4CAF50', bg: '#E7F5E8' },
 ];
 
 export default function ProfileScreen() {
@@ -42,156 +42,125 @@ export default function ProfileScreen() {
     };
 
     return (
-        <ScrollView
-            className="flex-1 bg-background"
-            contentContainerStyle={{ padding: 20, paddingBottom: 100 }}
-        >
-            <View className="gap-6">
+        <SafeAreaView className="flex-1 bg-[#F8F9FA]" edges={['top']}>
+            <ScrollView
+                className="flex-1"
+                contentContainerStyle={{ padding: 24, paddingBottom: 100 }}
+                showsVerticalScrollIndicator={false}
+            >
                 {/* Header */}
-                <View className="gap-2">
-                    <Text className="text-3xl font-bold text-foreground">Profile</Text>
-                    <Text className="text-base text-muted-foreground">
-                        Manage your account and preferences
-                    </Text>
+                <View className="mb-8">
+                    <Text className="text-[34px] leading-10 font-bold text-gray-900 mb-2">Profile</Text>
+                    <Text className="text-[17px] font-medium text-gray-500">Manage your account</Text>
                 </View>
 
                 {/* User Info Card */}
-                <Card>
-                    <CardHeader>
-                        <View className="flex-row items-center gap-4">
-                            <View className="w-16 h-16 rounded-full bg-primary/20 items-center justify-center">
-                                <User size={32} color="#7033ff" />
-                            </View>
-                            <View>
-                                <CardTitle>Health User</CardTitle>
-                                <Text className="text-sm text-muted-foreground">
-                                    health.user@example.com
-                                </Text>
-                            </View>
-                        </View>
-                    </CardHeader>
-                </Card>
-
-                {/* Account Settings */}
-                <View className="gap-4">
-                    <Text className="text-xl font-semibold text-foreground">Account</Text>
-                    {accountSettings.map((setting) => {
-                        const Icon = setting.icon;
-                        return (
-                            <TouchableOpacity key={setting.id} activeOpacity={0.7}>
-                                <Card>
-                                    <CardHeader>
-                                        <View className="flex-row items-center justify-between">
-                                            <View className="flex-row items-center gap-3">
-                                                <View
-                                                    className="w-10 h-10 rounded-full items-center justify-center"
-                                                    style={{
-                                                        backgroundColor: `${setting.color}20`,
-                                                    }}
-                                                >
-                                                    <Icon size={20} color={setting.color} />
-                                                </View>
-                                                <Text className="text-base font-medium text-foreground">
-                                                    {setting.title}
-                                                </Text>
-                                            </View>
-                                            <ChevronRight size={20} color="#747474" />
-                                        </View>
-                                    </CardHeader>
-                                </Card>
-                            </TouchableOpacity>
-                        );
-                    })}
-                </View>
-
-                {/* App Settings */}
-                <View className="gap-4">
-                    <Text className="text-xl font-semibold text-foreground">
-                        App Settings
-                    </Text>
-                    {appSettings.map((setting) => {
-                        const Icon = setting.icon;
-                        return (
-                            <TouchableOpacity key={setting.id} activeOpacity={0.7}>
-                                <Card>
-                                    <CardHeader>
-                                        <View className="flex-row items-center justify-between">
-                                            <View className="flex-row items-center gap-3">
-                                                <View
-                                                    className="w-10 h-10 rounded-full items-center justify-center"
-                                                    style={{
-                                                        backgroundColor: `${setting.color}20`,
-                                                    }}
-                                                >
-                                                    <Icon size={20} color={setting.color} />
-                                                </View>
-                                                <Text className="text-base font-medium text-foreground">
-                                                    {setting.title}
-                                                </Text>
-                                            </View>
-                                            <View className="flex-row items-center gap-2">
-                                                <Text className="text-sm text-muted-foreground">
-                                                    {setting.value}
-                                                </Text>
-                                                <ChevronRight size={20} color="#747474" />
-                                            </View>
-                                        </View>
-                                    </CardHeader>
-                                </Card>
-                            </TouchableOpacity>
-                        );
-                    })}
-                </View>
-
-                {/* Support */}
-                <View className="gap-4">
-                    <Text className="text-xl font-semibold text-foreground">Support</Text>
-                    {supportSettings.map((setting) => {
-                        const Icon = setting.icon;
-                        return (
-                            <TouchableOpacity key={setting.id} activeOpacity={0.7}>
-                                <Card>
-                                    <CardHeader>
-                                        <View className="flex-row items-center justify-between">
-                                            <View className="flex-row items-center gap-3">
-                                                <View
-                                                    className="w-10 h-10 rounded-full items-center justify-center"
-                                                    style={{
-                                                        backgroundColor: `${setting.color}20`,
-                                                    }}
-                                                >
-                                                    <Icon size={20} color={setting.color} />
-                                                </View>
-                                                <Text className="text-base font-medium text-foreground">
-                                                    {setting.title}
-                                                </Text>
-                                            </View>
-                                            <ChevronRight size={20} color="#747474" />
-                                        </View>
-                                    </CardHeader>
-                                </Card>
-                            </TouchableOpacity>
-                        );
-                    })}
-                </View>
-
-                {/* Sign Out Button */}
-                <Button
-                    onPress={handleSignOut}
-                    variant="outline"
-                    className="mt-4 border-destructive"
-                >
-                    <View className="flex-row items-center gap-2">
-                        <LogOut size={20} color="#dc2626" />
-                        <ButtonText className="text-destructive">Sign Out</ButtonText>
+                <View className="bg-white rounded-[32px] p-6 shadow-sm border border-gray-100 mb-8 flex-row items-center gap-5">
+                    <Image 
+                        source={{ uri: 'https://i.pravatar.cc/150?img=11' }} 
+                        className="w-[72px] h-[72px] rounded-full border-4 border-gray-50"
+                    />
+                    <View className="flex-1">
+                        <Text className="text-xl font-bold text-gray-900 mb-1">Alex Johnson</Text>
+                        <Text className="text-sm font-medium text-gray-500">alex.j@example.com</Text>
                     </View>
-                </Button>
+                    <View className="w-10 h-10 bg-gray-50 rounded-full items-center justify-center">
+                        <ChevronRight size={20} color="#A1A1AA" />
+                    </View>
+                </View>
 
-                {/* Version Info */}
-                <Text className="text-center text-sm text-muted-foreground">
-                    MyHealth v1.0.0
-                </Text>
-            </View>
-        </ScrollView>
+                {/* Settings Block Wrapper */}
+                <View className="gap-8">
+                    
+                    {/* Account Settings */}
+                    <View>
+                        <Text className="text-[15px] font-bold text-gray-400 uppercase tracking-wider mb-4 px-2">Account</Text>
+                        <View className="bg-white rounded-[32px] p-2 shadow-sm border border-gray-100">
+                            {accountSettings.map((setting, index) => {
+                                const Icon = setting.icon;
+                                return (
+                                    <TouchableOpacity 
+                                        key={setting.id} 
+                                        activeOpacity={0.7}
+                                        className={`flex-row items-center justify-between p-3 ${index !== accountSettings.length - 1 ? 'border-b border-gray-50' : ''}`}
+                                    >
+                                        <View className="flex-row items-center gap-4">
+                                            <View className="w-11 h-11 rounded-[16px] items-center justify-center" style={{ backgroundColor: setting.bg }}>
+                                                <Icon size={20} color={setting.color} />
+                                            </View>
+                                            <Text className="text-[16px] font-bold text-gray-800">{setting.title}</Text>
+                                        </View>
+                                        <ChevronRight size={20} color="#D4D4D8" />
+                                    </TouchableOpacity>
+                                );
+                            })}
+                        </View>
+                    </View>
+
+                    {/* App Settings */}
+                    <View>
+                        <Text className="text-[15px] font-bold text-gray-400 uppercase tracking-wider mb-4 px-2">Preferences</Text>
+                        <View className="bg-white rounded-[32px] p-2 shadow-sm border border-gray-100">
+                            {appSettings.map((setting, index) => {
+                                const Icon = setting.icon;
+                                return (
+                                    <TouchableOpacity 
+                                        key={setting.id} 
+                                        activeOpacity={0.7}
+                                        className={`flex-row items-center justify-between p-3 ${index !== appSettings.length - 1 ? 'border-b border-gray-50' : ''}`}
+                                    >
+                                        <View className="flex-row items-center gap-4">
+                                            <View className="w-11 h-11 rounded-[16px] items-center justify-center" style={{ backgroundColor: setting.bg }}>
+                                                <Icon size={20} color={setting.color} />
+                                            </View>
+                                            <Text className="text-[16px] font-bold text-gray-800">{setting.title}</Text>
+                                        </View>
+                                        <View className="flex-row items-center gap-2">
+                                            <Text className="text-[15px] font-medium text-gray-400">{setting.value}</Text>
+                                            <ChevronRight size={20} color="#D4D4D8" />
+                                        </View>
+                                    </TouchableOpacity>
+                                );
+                            })}
+                        </View>
+                    </View>
+
+                    {/* Support Settings */}
+                    <View>
+                        <Text className="text-[15px] font-bold text-gray-400 uppercase tracking-wider mb-4 px-2">Support</Text>
+                        <View className="bg-white rounded-[32px] p-2 shadow-sm border border-gray-100 mb-6">
+                            {supportSettings.map((setting, index) => {
+                                const Icon = setting.icon;
+                                return (
+                                    <TouchableOpacity 
+                                        key={setting.id} 
+                                        activeOpacity={0.7}
+                                        className={`flex-row items-center justify-between p-3 ${index !== supportSettings.length - 1 ? 'border-b border-gray-50' : ''}`}
+                                    >
+                                        <View className="flex-row items-center gap-4">
+                                            <View className="w-11 h-11 rounded-[16px] items-center justify-center" style={{ backgroundColor: setting.bg }}>
+                                                <Icon size={20} color={setting.color} />
+                                            </View>
+                                            <Text className="text-[16px] font-bold text-gray-800">{setting.title}</Text>
+                                        </View>
+                                        <ChevronRight size={20} color="#D4D4D8" />
+                                    </TouchableOpacity>
+                                );
+                            })}
+                        </View>
+                    </View>
+
+                    {/* Sign Out Button */}
+                    <TouchableOpacity
+                        onPress={handleSignOut}
+                        activeOpacity={0.7}
+                        className="bg-[#FFF0F0] p-4 rounded-full flex-row items-center justify-center gap-2 mb-8 border border-[#FFE0E0]"
+                    >
+                        <LogOut size={20} color="#FF6B6B" />
+                        <Text className="text-[#FF6B6B] font-bold text-[16px]">Sign Out</Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 }

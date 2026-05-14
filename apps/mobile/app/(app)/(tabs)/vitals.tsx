@@ -1,154 +1,129 @@
-import { View, Text, ScrollView } from 'react-native';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '~/components/ui/card';
-import { Heart, Activity, Weight, Moon, Footprints, Droplets, Thermometer, Wind } from 'lucide-react-native';
-
-// Dummy vitals data
-const vitalsData = [
-    {
-        id: 1,
-        title: 'Heart Rate',
-        value: '72 bpm',
-        status: 'Normal',
-        icon: Heart,
-        color: '#fd822b',
-        range: '60-100 bpm',
-    },
-    {
-        id: 2,
-        title: 'Blood Pressure',
-        value: '120/80',
-        status: 'Optimal',
-        icon: Activity,
-        color: '#4ac885',
-        range: '90/60 - 120/80',
-    },
-    {
-        id: 3,
-        title: 'Weight',
-        value: '75.5 kg',
-        status: 'On Track',
-        icon: Weight,
-        color: '#7033ff',
-        range: 'Target: 75 kg',
-    },
-    {
-        id: 4,
-        title: 'Sleep Duration',
-        value: '7.5 hours',
-        status: 'Good',
-        icon: Moon,
-        color: '#3276e4',
-        range: '7-9 hours',
-    },
-    {
-        id: 5,
-        title: 'Daily Steps',
-        value: '8,655',
-        status: 'Above Goal',
-        icon: Footprints,
-        color: '#4ac885',
-        range: 'Goal: 8,000',
-    },
-    {
-        id: 6,
-        title: 'Hydration',
-        value: '2.1 L',
-        status: 'Good',
-        icon: Droplets,
-        color: '#3276e4',
-        range: 'Goal: 2.5 L',
-    },
-    {
-        id: 7,
-        title: 'Body Temperature',
-        value: '36.8°C',
-        status: 'Normal',
-        icon: Thermometer,
-        color: '#fd822b',
-        range: '36.1-37.2°C',
-    },
-    {
-        id: 8,
-        title: 'Oxygen Level',
-        value: '98%',
-        status: 'Excellent',
-        icon: Wind,
-        color: '#4ac885',
-        range: '95-100%',
-    },
-    {
-        id: 9,
-        title: 'Resting Heart Rate',
-        value: '65 bpm',
-        status: 'Excellent',
-        icon: Heart,
-        color: '#4ac885',
-        range: '60-100 bpm',
-    },
-    {
-        id: 10,
-        title: 'Active Minutes',
-        value: '45 min',
-        status: 'Good',
-        icon: Activity,
-        color: '#7033ff',
-        range: 'Goal: 60 min',
-    },
-];
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { Heart, Activity, Weight, Moon, Footprints, Droplets, Thermometer, Wind, ArrowLeft, Download, Upload } from 'lucide-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function VitalsScreen() {
     return (
-        <ScrollView
-            className="flex-1 bg-background"
-            contentContainerStyle={{ padding: 20, paddingBottom: 100 }}
-        >
-            <View className="gap-6">
-                {/* Header */}
-                <View className="gap-2">
-                    <Text className="text-3xl font-bold text-foreground">Health Vitals</Text>
-                    <Text className="text-base text-muted-foreground">
-                        Monitor your key health metrics
-                    </Text>
+        <SafeAreaView className="flex-1 bg-[#F1EEF5]" edges={['top']}>
+            <ScrollView
+                className="flex-1"
+                contentContainerStyle={{ padding: 24, paddingBottom: 100 }}
+                showsVerticalScrollIndicator={false}
+            >
+                {/* Header Section */}
+                <View className="flex-row justify-between items-center mb-8">
+                    <TouchableOpacity className="w-12 h-12 bg-transparent rounded-full items-center justify-center border border-gray-300">
+                        <ArrowLeft size={20} color="#1A1A1A" strokeWidth={2.5} />
+                    </TouchableOpacity>
+                    <View className="flex-row gap-2">
+                        <TouchableOpacity className="w-12 h-12 bg-transparent rounded-full items-center justify-center border border-gray-300">
+                            <Download size={20} color="#1A1A1A" strokeWidth={2.5} />
+                        </TouchableOpacity>
+                        <TouchableOpacity className="w-12 h-12 bg-transparent rounded-full items-center justify-center border border-gray-300">
+                            <Upload size={20} color="#1A1A1A" strokeWidth={2.5} />
+                        </TouchableOpacity>
+                    </View>
                 </View>
 
-                {/* Vitals List */}
-                <View className="gap-4">
-                    {vitalsData.map((vital) => {
-                        const Icon = vital.icon;
-                        return (
-                            <Card key={vital.id}>
-                                <CardHeader>
-                                    <View className="flex-row items-start justify-between">
-                                        <View className="flex-row items-start gap-3 flex-1">
-                                            <View
-                                                className="w-12 h-12 rounded-full items-center justify-center"
-                                                style={{ backgroundColor: `${vital.color}20` }}
-                                            >
-                                                <Icon size={24} color={vital.color} />
-                                            </View>
-                                            <View className="flex-1">
-                                                <CardTitle>{vital.title}</CardTitle>
-                                                <CardDescription>{vital.range}</CardDescription>
-                                            </View>
-                                        </View>
-                                        <View className="items-end">
-                                            <Text className="text-2xl font-bold text-foreground">
-                                                {vital.value}
-                                            </Text>
-                                            <Text
-                                                className="text-sm font-medium"
-                                                style={{ color: vital.color }}
-                                            >
-                                                {vital.status}
-                                            </Text>
-                                        </View>
-                                    </View>
-                                </CardHeader>
-                            </Card>
-                        );
-                    })}
+                {/* Title */}
+                <Text className="text-[32px] leading-9 font-black text-[#1A1A1A] mb-8 tracking-tight">
+                    Diagnostics
+                </Text>
+
+                {/* Heartbeat Card (Light Blue) */}
+                <View className="bg-[#9BC5FE] rounded-[32px] p-6 mb-4 shadow-sm relative overflow-hidden">
+                    <View className="flex-row items-center gap-3 mb-6">
+                        <View className="w-8 h-8 bg-white/40 rounded-full items-center justify-center">
+                            <Activity size={16} color="#1A1A1A" strokeWidth={3} />
+                        </View>
+                        <Text className="text-gray-900 font-bold text-[17px]">Heartbeat</Text>
+                        <TouchableOpacity className="ml-auto">
+                            <Text className="text-gray-900/40 font-bold tracking-widest leading-4">...</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
+                    <View className="flex-row items-baseline gap-2 mb-6">
+                        <Text className="text-[42px] font-black text-gray-900 tracking-tighter">82</Text>
+                        <Text className="text-[13px] font-bold text-gray-900/60 pb-2">bpm</Text>
+                    </View>
+                    
+                    {/* Simulated EKG Line */}
+                    <View className="h-16 w-full flex-row items-center justify-center relative">
+                        <View className="absolute w-full h-[1px] bg-gray-900/20" />
+                        <View className="absolute left-[30%] w-[1px] h-full bg-gray-900/10" />
+                        <View className="absolute right-[30%] w-[1px] h-full bg-gray-900/10" />
+                        
+                        {/* EKG Path placeholder */}
+                        <View className="flex-row items-center h-full w-full justify-around z-10 px-2">
+                            <View className="w-6 h-[2px] bg-gray-900" />
+                            <View className="w-2 h-4 bg-gray-900 transform rotate-45 -ml-1" />
+                            <View className="w-2 h-10 bg-gray-900 transform -rotate-75" />
+                            <View className="w-2 h-12 bg-gray-900 transform rotate-75" />
+                            <View className="w-2 h-4 bg-gray-900 transform -rotate-45 -mr-1" />
+                            <View className="w-12 h-[2px] bg-gray-900" />
+                            <View className="w-2 h-3 bg-gray-900 transform rotate-45 -ml-1" />
+                            <View className="w-2 h-8 bg-gray-900 transform -rotate-75" />
+                            <View className="w-2 h-10 bg-gray-900 transform rotate-75" />
+                            <View className="w-2 h-3 bg-gray-900 transform -rotate-45 -mr-1" />
+                            <View className="w-6 h-[2px] bg-gray-900" />
+                        </View>
+                        
+                        {/* Scan Highlight Box */}
+                        <View className="absolute right-[20%] w-16 h-20 bg-white/30 rounded-2xl border border-white/50" />
+                    </View>
                 </View>
-            </View>
-        </ScrollView>
+
+                {/* Interval Card (Pale Green) */}
+                <View className="bg-[#D3F5C3] rounded-[32px] p-6 mb-4 shadow-sm">
+                    <View className="flex-row items-center gap-3 mb-6">
+                        <View className="w-8 h-8 bg-white/60 rounded-full items-center justify-center">
+                            <Activity size={16} color="#1A1A1A" strokeWidth={3} />
+                        </View>
+                        <Text className="text-gray-900 font-bold text-[17px]">851 ms</Text>
+                        <TouchableOpacity className="ml-auto">
+                            <Text className="text-gray-900/40 font-bold tracking-widest leading-4">...</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
+                    <Text className="text-[12px] font-bold text-gray-900/60 mb-6">R-R interval</Text>
+                    
+                    {/* Interval Chart Placeholder */}
+                    <View className="h-12 w-full flex-row items-end justify-between px-2">
+                        {['851 ms', '841 ms', '871 ms', '881 ms'].map((label, index) => (
+                            <View key={index} className="items-center">
+                                <View className={`w-[2px] rounded-full mb-2 ${index === 0 ? 'h-10 bg-gray-900' : index === 1 ? 'h-8 bg-gray-900/40' : index === 2 ? 'h-12 bg-gray-900/40' : 'h-10 bg-gray-900/40'}`} />
+                                <Text className="text-[10px] font-bold text-gray-900/60">{label}</Text>
+                            </View>
+                        ))}
+                    </View>
+                </View>
+
+                {/* Results Card (White) */}
+                <View className="bg-white rounded-[32px] p-6 shadow-sm flex-row items-center">
+                    <View className="w-16 h-16 rounded-full bg-[#9BC5FE]/20 items-center justify-center mr-4 border-[6px] border-[#F1EEF5]">
+                        <View className="w-10 h-10 rounded-full bg-[#9BC5FE]" />
+                    </View>
+                    <View className="flex-1">
+                        <Text className="text-gray-900 font-bold text-[17px] mb-1">Results</Text>
+                        <Text className="text-[12px] font-bold text-gray-400 mb-3">You are calm and ready!</Text>
+                        
+                        <View className="flex-row gap-3">
+                            <View className="flex-row items-center gap-1.5">
+                                <View className="w-2 h-2 rounded-full bg-[#FBC565]" />
+                                <Text className="text-[11px] font-bold text-gray-900">Stress</Text>
+                            </View>
+                            <View className="flex-row items-center gap-1.5">
+                                <View className="w-2 h-2 rounded-full bg-[#9BC5FE]" />
+                                <Text className="text-[11px] font-bold text-gray-900">Recovery</Text>
+                            </View>
+                        </View>
+                    </View>
+                    <TouchableOpacity className="self-start">
+                        <Text className="text-gray-400 font-bold">ⓘ</Text>
+                    </TouchableOpacity>
+                </View>
+
+            </ScrollView>
+        </SafeAreaView>
     );
 }

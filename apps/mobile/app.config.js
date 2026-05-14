@@ -36,6 +36,8 @@ module.exports = {
             "favicon": "./assets/favicon.png",
             "bundler": "metro"
         },
+        // Required by expo-router; `expo install` cannot inject this into dynamic app.config.js automatically.
+        "plugins": ["expo-router"],
         "extra": {
             "apiUrl": process.env.API_URL || "http://localhost:3000",
             "environment": process.env.APP_ENV || "development",
