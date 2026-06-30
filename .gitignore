@@ -4,3 +4,8 @@ node_modules
 .env
 .env.local
 .env.*.local
+
+# Test artifacts
+coverage
+playwright-report
+test-results

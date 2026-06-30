@@ -7,7 +7,10 @@
     "scripts": {
         "clean": "rm -rf .turbo node_modules",
         "lint": "eslint .",
-        "format": "prettier --check \"**/*.{mjs,ts,md,json}\""
+        "format": "prettier --check \"**/*.{mjs,ts,md,json}\"",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage"
     },
     "dependencies": {
         "@helix/auth": "workspace:*",
@@ -20,6 +23,7 @@
         "@types/node": "^20.14.10",
         "eslint": "^9.23.0",
         "prettier": "^3.5.3",
-        "typescript": "^5.8.2"
+        "typescript": "^5.8.2",
+        "vitest": "^4.1.9"
     }
 }

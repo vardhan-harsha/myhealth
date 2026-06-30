@@ -16,12 +16,23 @@
         "db:push": "turbo run db:push",
         "db:studio": "turbo run db:studio",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules"
+        "clean": "rm -rf node_modules apps/*/node_modules packages/*/node_modules",
+        "test": "turbo run test",
+        "test:unit": "vitest run",
+        "test:unit:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "test:web": "turbo run test --filter=@helix/web",
+        "test:api": "turbo run test --filter=@helix/api",
+        "test:mobile": "turbo run test --filter=@helix/mobile",
+        "test:e2e": "turbo run test:e2e --filter=@helix/web"
     },
     "devDependencies": {
+        "@vitest/coverage-v8": "^4.1.9",
         "prettier": "^3.5.3",
         "turbo": "^2.7.4",
-        "typescript": "^5.8.2"
+        "typescript": "^5.8.2",
+        "vite-tsconfig-paths": "^6.1.1",
+        "vitest": "^4.1.9"
     },
     "packageManager": "pnpm@9.7.0"
 }

@@ -28,7 +28,10 @@
     "submit:android": "eas submit --platform android",
     "update": "eas update",
     "update:preview": "eas update --branch preview",
-    "update:production": "eas update --branch production"
+    "update:production": "eas update --branch production",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@babel/runtime": "^7.28.4",
@@ -100,6 +103,7 @@
     "@babel/core": "^7.20.0",
     "@types/react": "~19.1.10",
     "dotenv": "^17.2.3",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "vitest": "^4.1.9"
   }
 }
